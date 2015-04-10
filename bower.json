@@ -1,0 +1,12 @@
+{
+    "name": "blaksneil/slide-viewer",
+    "dependencies": {
+        "bootstrap": "~3",
+        "font-awesome": "~4",
+        "html5shiv": "*",
+        "jquery": "~1",
+        "respond": "*",
+        "selectivizr": "master",
+        "nwmatcher": "*"
+    }
+}

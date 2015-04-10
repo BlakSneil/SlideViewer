@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% set app_name = 'Slide Viewer' %}
+
+{% block title %}{{ app_name }} - {{ page_title is defined ? page_title : '' }}{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet" />
+	<link href="{{ asset('components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" >
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    {% include 'navbar.html.twig' %}
+
+    <div class="container content">
+	    {% include 'alert.html.twig' %}
+
+        {{ block('content') }}
+    </div>
+
+{% endblock %}
