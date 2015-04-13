@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aec06145c4c75c35f696208c5637b396",
+    "hash": "423ef079398686524cc9c9e0a8fc9dde",
     "packages": [
         {
             "name": "blaksneil/user-bundle",

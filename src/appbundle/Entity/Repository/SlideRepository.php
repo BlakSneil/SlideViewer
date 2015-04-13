@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Entity\Repository;
 
-use AppBundleBundle\Entity\Slide;
+use AppBundle\Entity\Slide;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 
