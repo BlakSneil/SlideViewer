@@ -4,23 +4,76 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "423ef079398686524cc9c9e0a8fc9dde",
+    "hash": "74efeee2243317b0fe6ee8bb51a1d627",
     "packages": [
+        {
+            "name": "blaksneil/repository-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blaksneil/RepositoryBundle.git",
+                "reference": "80a1360536045d73586e961af13707959cf3291e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blaksneil/RepositoryBundle/zipball/80a1360536045d73586e961af13707959cf3291e",
+                "reference": "80a1360536045d73586e961af13707959cf3291e",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "2.*",
+                "doctrine/doctrine-bundle": "1.*",
+                "doctrine/doctrine-fixtures-bundle": "2.*",
+                "doctrine/orm": "2.*",
+                "incenteev/composer-parameter-handler": "~2.0",
+                "php": ">=5.3.3",
+                "sensio/distribution-bundle": "3.*",
+                "sensio/framework-extra-bundle": "3.*",
+                "symfony/assetic-bundle": "~2.3",
+                "symfony/monolog-bundle": "~2.4",
+                "symfony/swiftmailer-bundle": "~2.3",
+                "symfony/symfony": "2.6.*",
+                "twig/extensions": "~1.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "BS\\RepositoryBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simone Cainero",
+                    "email": "simone.cainero@gmail.com"
+                }
+            ],
+            "description": "Symfony BSRepositoryBundle",
+            "homepage": "https://github.com/blaksneil/BSRepositoryBundle",
+            "keywords": [
+                "User management"
+            ],
+            "time": "2015-04-13 08:15:13"
+        },
         {
             "name": "blaksneil/user-bundle",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blaksneil/BSUserBundle.git",
-                "reference": "d7f5f95bd46951755ee4790689b2eef1081e8f1e"
+                "reference": "d048284626acc815514106ed192b4499858377ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blaksneil/BSUserBundle/zipball/d7f5f95bd46951755ee4790689b2eef1081e8f1e",
-                "reference": "d7f5f95bd46951755ee4790689b2eef1081e8f1e",
+                "url": "https://api.github.com/repos/blaksneil/BSUserBundle/zipball/d048284626acc815514106ed192b4499858377ea",
+                "reference": "d048284626acc815514106ed192b4499858377ea",
                 "shasum": ""
             },
             "require": {
+                "blaksneil/repository-bundle": "dev-master",
                 "doctrine/dbal": "2.*",
                 "doctrine/doctrine-bundle": "1.*",
                 "doctrine/doctrine-fixtures-bundle": "2.*",
@@ -59,7 +112,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2015-04-10 09:25:24"
+            "time": "2015-04-13 08:37:56"
         },
         {
             "name": "doctrine/annotations",
@@ -2139,7 +2192,8 @@
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
         "ircmaxell/password-compat": 20,
-        "blaksneil/user-bundle": 20
+        "blaksneil/user-bundle": 20,
+        "blaksneil/repository-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

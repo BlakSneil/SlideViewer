@@ -53,24 +53,44 @@ class Slide
     protected $zipCode;
 
     /**
-     * @ORM\Column(name="state", type="string", length=50)
+     * @ORM\Column(name="country", type="string", length=50)
      */
-    protected $state;
-
-
-
-
-
+    protected $country;
 
     /**
-     * @ORM\Column(name="date_creation", type="date")
+     * @ORM\Column(name="path_photo", type="string", length=50)
      */
-    protected $date_creation;
+    protected $pathPhoto;
+
+    /**
+     * @ORM\Column(name="telephone_number", type="string", length=50)
+     */
+    protected $telephoneNumber;
+
+    /**
+     * @ORM\Column(name="cellular_number", type="string", length=50)
+     */
+    protected $cellularNumber;
+
+    /**
+     * @ORM\Column(name="email", type="string", length=50)
+     */
+    protected $email;
 
     /**
      * @ORM\Column(name="notes", type="string")
      */
     protected $notes;
+
+    /**
+     * @ORM\Column(name="date_creation", type="date")
+     */
+    protected $dateCreation;
+
+    /**
+     * @ORM\Column(name="date_edit", type="date")
+     */
+    protected $dateEdit;
 
 
     /**
@@ -100,22 +120,6 @@ class Slide
     /**
      * @return string
      */
-    public function getDateCreation()
-    {
-        return $this->date_creation;
-    }
-
-    /**
-     * @param string $notes
-     */
-    public function setDateCreation($date_creation)
-    {
-        $this->date_creation = $date_creation;
-    }
-
-    /**
-     * @return string
-     */
     public function getNotes()
     {
         return $this->notes;
@@ -127,5 +131,21 @@ class Slide
     public function setNotes($notes)
     {
         $this->notes = $notes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * @param string $notes
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
     }
 }
