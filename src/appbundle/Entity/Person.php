@@ -58,11 +58,6 @@ class Slide
     protected $country;
 
     /**
-     * @ORM\Column(name="path_photo", type="string", length=50)
-     */
-    protected $pathPhoto;
-
-    /**
      * @ORM\Column(name="telephone_number", type="string", length=50)
      */
     protected $telephoneNumber;
