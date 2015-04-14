@@ -64,12 +64,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blaksneil/BSUserBundle.git",
-                "reference": "d048284626acc815514106ed192b4499858377ea"
+                "reference": "787a8a3398fcfde78c57d4a322e1aee1840abdb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blaksneil/BSUserBundle/zipball/d048284626acc815514106ed192b4499858377ea",
-                "reference": "d048284626acc815514106ed192b4499858377ea",
+                "url": "https://api.github.com/repos/blaksneil/BSUserBundle/zipball/787a8a3398fcfde78c57d4a322e1aee1840abdb6",
+                "reference": "787a8a3398fcfde78c57d4a322e1aee1840abdb6",
                 "shasum": ""
             },
             "require": {
@@ -112,7 +112,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2015-04-13 08:37:56"
+            "time": "2015-04-13 09:29:33"
         },
         {
             "name": "doctrine/annotations",
