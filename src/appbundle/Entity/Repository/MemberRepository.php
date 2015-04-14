@@ -2,9 +2,10 @@
 namespace AppBundle\Entity\Repository;
 
 use AppBundle\Entity\Member;
-use BS\RepositoryBundle\Entity\Repository\BaseRepository;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
-class MemberRepository extends BaseRepository
+class MemberRepository extends EntityRepository
 {
     public function newInstance()
     {

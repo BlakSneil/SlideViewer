@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="person")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\PersonRepository")
  */
-class Slide
+class Person
 {
     /**
      * @ORM\Id()
