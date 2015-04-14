@@ -4,7 +4,11 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "f7c92981303349cb86f824f9f2d74d20",
+=======
+    "hash": "74efeee2243317b0fe6ee8bb51a1d627",
+>>>>>>> bc4dee2337f7d8275b256d2e2b37c3da1bd44d8f
     "packages": [
         {
             "name": "blaksneil/repository-bundle",
@@ -64,12 +68,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/blaksneil/BSUserBundle.git",
+<<<<<<< HEAD
                 "reference": "787a8a3398fcfde78c57d4a322e1aee1840abdb6"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/blaksneil/BSUserBundle/zipball/787a8a3398fcfde78c57d4a322e1aee1840abdb6",
                 "reference": "787a8a3398fcfde78c57d4a322e1aee1840abdb6",
+=======
+                "reference": "26636c8c05541c5051ba5934217422a16b199b9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blaksneil/BSUserBundle/zipball/26636c8c05541c5051ba5934217422a16b199b9b",
+                "reference": "26636c8c05541c5051ba5934217422a16b199b9b",
+>>>>>>> bc4dee2337f7d8275b256d2e2b37c3da1bd44d8f
                 "shasum": ""
             },
             "require": {
@@ -112,7 +125,11 @@
             "keywords": [
                 "User management"
             ],
+<<<<<<< HEAD
             "time": "2015-04-13 09:29:33"
+=======
+            "time": "2015-04-14 08:53:41"
+>>>>>>> bc4dee2337f7d8275b256d2e2b37c3da1bd44d8f
         },
         {
             "name": "doctrine/annotations",
@@ -2192,8 +2209,13 @@
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
         "ircmaxell/password-compat": 20,
+<<<<<<< HEAD
         "blaksneil/repository-bundle": 20,
         "blaksneil/user-bundle": 20
+=======
+        "blaksneil/user-bundle": 20,
+        "blaksneil/repository-bundle": 20
+>>>>>>> bc4dee2337f7d8275b256d2e2b37c3da1bd44d8f
     },
     "prefer-stable": false,
     "prefer-lowest": false,

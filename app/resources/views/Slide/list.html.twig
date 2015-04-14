@@ -19,7 +19,7 @@
         <h4>Slides</h4>
     </div>
     <div class="col-md-4 text-right">
-        <form id="search-by-name-form" action="{{ app.request.uri }}" method="GET">
+        <form class="bs-pagination-search" action="{{ app.request.uri }}" method="GET">
             <div class="input-group">
                 <input name="name" class="form-control has-input-clearer" type="search" placeholder="Find by name..." value="{{ name }}">
                 <span class="form-control-feedback input-clearer glyphicon glyphicon-remove"></span>
@@ -36,7 +36,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="knp-list-content">
+        <div class="bs-pagination-element">
             {% include 'Slide/list_content.html.twig' %}
         </div>
     </div>

@@ -1,44 +1,13 @@
 <?php
 namespace AppBundle\Entity\Repository;
 
-use AppBundleBundle\Entity\Slide;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query;
+use AppBundle\Entity\Slide;
+use BS\RepositoryBundle\Entity\Repository\BaseRepository;
 
-class SlideRepository extends EntityRepository
+class SlideRepository extends BaseRepository
 {
     public function newInstance()
     {
         return new Slide();
-    }
-
-    public function findAll($orderBy = null, $direction = 'ASC')
-    {
-        $qb = $this->createQueryBuilder('s');
-
-        if (null != $orderBy) {
-            $qb->orderBy($orderBy, $direction);
-        }
-
-        return $qb->getQuery()->getResult();
-    }
-
-    public function findById($id)
-    {
-        return $this->find($id);
-    }
-
-    public function findByName($text, $orderBy = null, $direction = 'ASC')
-    {
-        $qb = $this->createQueryBuilder('s');
-
-        $qb->where('s.name LIKE :name')
-            ->setParameter('name', '%' . $text . '%');
-
-        if (null != $orderBy) {
-            $qb->orderBy($orderBy, $direction);
-        }
-
-        return $qb->getQuery()->getResult();
     }
 }
