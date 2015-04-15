@@ -6,14 +6,14 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as MVC;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Slide;
-use AppBundle\Entity\Repository\SlideRepository;
-use AppBundle\Form\SlideType;
+use AppBundle\Entity\Member;
+use AppBundle\Entity\Repository\MemberRepository;
+use AppBundle\Form\MemberType;
 
-class SlideController extends Controller
+class MemberController extends Controller
 {
     /**
-     * @MVC\Route("/slides", name="slide_list")
+     * @MVC\Route("/members", name="member_list")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -24,25 +24,25 @@ class SlideController extends Controller
         $sort = $request->query->get('sort', null);
         $direction = $request->query->get('direction', null);
 
-        /** @var SlideRepository $repo */
-        $repo = $this->getDoctrine()->getRepository('AppBundle:Slide');
+        /** @var MemberRepository $repo */
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Member');
 
-        $slides = null == $name ? $repo->findAll($sort, $direction) : $repo->findByName($name, $sort, $direction);
+        $members = null == $name ? $repo->findAll($sort, $direction) : $repo->findByName($name, $sort, $direction);
 
-        if ($page * 10  > sizeof($slides) + 10) {
+        if ($page * 10  > sizeof($members) + 10) {
             $page = 1;
         }
 
         $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($slides, $page, 10);
+        $pagination = $paginator->paginate($members, $page, 10);
 
-        $twigName = $request->isXmlHttpRequest() ? 'Slide/list_content.html.twig' : 'Slide/list.html.twig';
+        $twigName = $request->isXmlHttpRequest() ? 'Member/list_content.html.twig' : 'Member/list.html.twig';
 
         return $this->render($twigName, array('pagination' => $pagination, 'name' => $name));
     }
 
     /**
-     * @MVC\Route("/slide/view/{id}", name="slide_view")
+     * @MVC\Route("/member/view/{id}", name="member_view")
      * @param Request $request
      * @param id
      * @return \Symfony\Component\HttpFoundation\Response
@@ -53,21 +53,21 @@ class SlideController extends Controller
         $manager = $this->get('doctrine')->getManager();
 
         /** @var RoleRepository $repo */
-        $repo = $this->getDoctrine()->getRepository('AppBundle:Slide');
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Member');
 
-        /** @var Slide $slide */
-        $slide = $repo->find($id);
+        /** @var Member $member */
+        $member = $repo->find($id);
 
-        if ($slide == null) {
-            $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
+        if ($member == null) {
+            $this->get('session')->getFlashBag()->add('error', 'Il member selezionata non è stata trovata.');
         }
 
-        return $this->render('Slide/view.html.twig', array('slide' => $slide));
+        return $this->render('Member/view.html.twig', array('member' => $member));
     }
 
     /**
-     * @MVC\Route("/slide/create", name="slide_create")
-     * @MVC\Route("/slide/edit/{id}", name="slide_edit")
+     * @MVC\Route("/member/create", name="member_create")
+     * @MVC\Route("/member/edit/{id}", name="member_edit")
      * @param Request $request
      * @param id
      * @return \Symfony\Component\HttpFoundation\Response
@@ -78,25 +78,25 @@ class SlideController extends Controller
         $manager = $this->get('doctrine')->getManager();
 
         /** @var RoleRepository $repo */
-        $repo = $this->getDoctrine()->getRepository('AppBundle:Slide');
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Member');
 
 
-        /** @var Slide $slide */
-        $slide = null != $id ? $repo->find($id) : new Slide();
+        /** @var Member $member */
+        $member = null != $id ? $repo->find($id) : new Member();
 
-        $form = $this->createForm(new SlideType('AppBundle\Entity\Slide'), $slide)
+        $form = $this->createForm(new MemberType('AppBundle\Entity\Member'), $member)
             ->handleRequest($request);
 
         if ($form->isValid()) {
 
-            $manager->persist($slide);
+            $manager->persist($member);
             $manager->flush();
 
             $this->get('session')->getFlashBag()->add('success', 'Le modifiche sono state salvate con successo.');
 
-            return $this->redirect($this->generateUrl('slide_edit', array('id' => $slide->getId())));
+            return $this->redirect($this->generateUrl('member_edit', array('id' => $member->getId())));
         }
 
-        return $this->render('Slide/edit.html.twig', array('form' => $form->createView(), 'name' => $slide->getName()));
+        return $this->render('Member/edit.html.twig', array('form' => $form->createView(), 'name' => $member->getName()));
     }
 }
