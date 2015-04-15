@@ -7,6 +7,7 @@
 {% block stylesheets %}
     <link href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/app/css/footer.css') }}" rel="stylesheet" />
 	<link href="{{ asset('components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" >
 {% endblock %}
 
@@ -24,4 +25,8 @@
         {{ block('content') }}
     </div>
 
+   {% include 'footer.html.twig' %}
+
 {% endblock %}
+
+

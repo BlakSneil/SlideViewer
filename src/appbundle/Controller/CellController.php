@@ -42,6 +42,32 @@ class CellController extends Controller
     }
 
     /**
+     * @MVC\Route("/cell/view/{id}", name="cell_view")
+     * @param Request $request
+     * @param id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewAction(Request $request, $id = null)
+    {
+        /** @var EntityManager $manager */
+        $manager = $this->get('doctrine')->getManager();
+
+        /** @var RoleRepository $repo */
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Cell');
+
+        /** @var Slide $slide */
+        $cell = $repo->find($id);
+
+        if ($cell == null) {
+            $this->get('session')->getFlashBag()->add('error', 'La cellula selezionata non è stata trovata.');
+        }
+
+        // TODO: cercare i membri di quella cellula e visualizzarli
+
+        return $this->render('Cell/view.html.twig', array('cell' => $cell));
+    }
+
+    /**
      * @MVC\Route("/admin/cell/create", name="admin_cell_create")
      * @MVC\Route("/admin/cell/edit/{id}", name="admin_cell_edit")
      * @param Request $request
