@@ -11,9 +11,4 @@ class CellRepository extends EntityRepository
     {
         return new Cell();
     }
-
-    public function findByName($text, $orderBy = null, $direction = 'ASC', $name = 'description')
-    {
-        return parent::findByName($text, $orderBy, $direction, $name);
-    }
 }

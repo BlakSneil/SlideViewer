@@ -1,0 +1,8 @@
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-leaf"></i> Cells <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+        {% for cell in cells %}
+            <li><a href="{{ path('cell_list', {'id': cell.id}) }}">{{ cell.name }}</a></li>
+        {% endfor %}
+    </ul>
+</li>

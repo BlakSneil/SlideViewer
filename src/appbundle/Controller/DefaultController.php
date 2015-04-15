@@ -20,6 +20,11 @@ class DefaultController extends Controller
      */
     public function homeAction()
     {
-        return $this->render('home.html.twig');
+        /** @var CellRepository $repo */
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Cell');
+
+        $cells = $repo->findAll();
+
+        return $this->render('home.html.twig', array('cells' => $cells));
     }
 }

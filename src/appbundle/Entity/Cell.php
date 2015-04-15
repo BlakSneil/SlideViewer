@@ -23,11 +23,6 @@ class Cell
     private $name;
 
     /**
-     * @ORM\Column(name="description", type="string", length=255)
-     */
-    private $description;
-
-    /**
      * @ORM\Column(name="notes", type="string")
      */
     private $notes;
@@ -55,22 +50,6 @@ class Cell
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
     }
 
     /**

@@ -36,8 +36,6 @@ class SlideController extends Controller
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($slides, $page, 10);
 
-        //var_dump($slides);die();
-
         $twigName = $request->isXmlHttpRequest() ? 'Slide/list_content.html.twig' : 'Slide/list.html.twig';
 
         return $this->render($twigName, array('pagination' => $pagination, 'name' => $name));
