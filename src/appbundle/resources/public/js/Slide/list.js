@@ -43,6 +43,6 @@ function updatePagination(e, url)
         el.parent().find('.spinner-container').remove();
         el.unwrap();
 
-        window.history.pushState({}, '', 'users' + url.substr(url.lastIndexOf('?')));
+        window.history.pushState({}, '', 'slides' + url.substr(url.lastIndexOf('?')));
     });
 }

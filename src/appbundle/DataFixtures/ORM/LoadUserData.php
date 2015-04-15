@@ -52,12 +52,18 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         /** @var EntityManager $manager */
         $manager = $this->container->get('doctrine')->getManager();
 
-        /** @var Slide $slide */
-        $slide = new Slide();
+        for ($i = 0; $i < 20 ; $i++) { 
+            /** @var Slide $slide */
+            $slide = new Slide();
 
-        $manager->persist($role);
+            $slide->setName('Slide ' . $i);
+            $slide->setDescription('This is the slide n°' . $i);
+            $slide->setDateCreation(date_create(date('Y-m-d H:i:s')));
+            $slide->setNotes('Created from data fixtures');
 
+            $manager->persist($slide);
+        }
 
         $manager->flush();
-    }
+   }
 }

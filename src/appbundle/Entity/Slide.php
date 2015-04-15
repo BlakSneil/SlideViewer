@@ -79,7 +79,7 @@ class Slide
     }
 
     /**
-     * @return string
+     * @return date
      */
     public function getDateCreation()
     {
@@ -87,7 +87,7 @@ class Slide
     }
 
     /**
-     * @param string $notes
+     * @param date $date_creation
      */
     public function setDateCreation($date_creation)
     {

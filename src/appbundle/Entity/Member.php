@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="person")
+ * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\MemberRepository")
  */
 class Member extends Person
