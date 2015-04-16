@@ -1,5 +1,5 @@
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-leaf"></i> Cells <span class="caret"></span></a>
+<li class="dropdown {{ app.request.get('_route') matches '/cell*/' ? '' : 'active' }}">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-leaf"></i> {{ app.request.get('_route') matches '/cell*/' ? cell.name : 'Cells' }} <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
         {% for cell in cells %}
             <li><a href="{{ path('cell_view', {'id': cell.id}) }}">{{ cell.name }}</a></li>

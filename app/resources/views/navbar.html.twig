@@ -39,18 +39,20 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href=""><i class="fa fa-user"></i> New</a></li>
 
-                    <form class="navbar-form navbar-left" action="{{ app.request.uri }}" method="GET">
-                        <div class="input-group">
-                            <input name="name" class="form-control has-input-clearer" type="search" placeholder="Find by name..." value="{{ name }}">
-                            <span class="form-control-feedback input-clearer glyphicon glyphicon-remove"></span>
-                            <div class="input-group-btn">
-                                <button type="submit" id="search-button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                    {% if not (app.request.get('_route') matches '/admin/') %}
+                        <a type="submit" class="btn btn-success navbar-btn navbar-left"><i class="fa fa-user"></i> New</a>
+
+                        <form class="navbar-form navbar-left" action="{{ app.request.uri }}" method="GET">
+                            <div class="input-group">
+                                <input name="name" class="form-control has-input-clearer" type="search" placeholder="Find by name..." value="{{ name is defined ? name : '' }}">
+                                <span class="form-control-feedback input-clearer glyphicon glyphicon-remove"></span>
+                                <div class="input-group-btn">
+                                    <button type="submit" id="search-button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-
+                        </form>
+                    {% endif %}
 
                     <li><a><i class="fa fa-user"></i> {{ app.user.username }}</a></li>
                     <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
