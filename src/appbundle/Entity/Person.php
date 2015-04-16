@@ -27,62 +27,67 @@ class Person
     protected $surname;
 
     /**
-     * @ORM\Column(name="fiscal_code", type="string", length=16)
+     * @ORM\Column(name="fiscal_code", type="string", length=16, nullable=true)
      */
     protected $fiscalCode;
 
     /**
-     * @ORM\Column(name="birthday", type="date")
+     * @ORM\Column(name="birthday", type="date", nullable=true)
      */
     protected $birthday;
 
     /**
-     * @ORM\Column(name="address", type="string", length=50)
+     * @ORM\Column(name="street_name", type="string", length=50, nullable=true)
      */
-    private $address;
+    private $streetName;
 
     /**
-     * @ORM\Column(name="street_number", type="string", length=10)
+     * @ORM\Column(name="street_number", type="string", length=10, nullable=true)
      */
     protected $streetNumber;
 
     /**
-     * @ORM\Column(name="zip_code", type="string", length=10)
+     * @ORM\Column(name="locality", type="string", length=50, nullable=true)
+     */
+    protected $locality;
+
+    /**
+     * @ORM\Column(name="zip_code", type="string", length=10, nullable=true)
      */
     protected $zipCode;
 
     /**
-     * @ORM\Column(name="country", type="string", length=50)
+     * @ORM\Column(name="state", type="string", length=50, nullable=true)
      */
-    protected $country;
+    protected $state;
 
     /**
-     * @ORM\Column(name="telephone_number", type="string", length=50)
+     * @ORM\Column(name="telephone_number", type="string", length=50, nullable=true)
      */
     protected $telephoneNumber;
 
     /**
-     * @ORM\Column(name="cellular_number", type="string", length=50)
+     * @ORM\Column(name="cellular_number", type="string", length=50, nullable=true)
      */
     protected $cellularNumber;
 
     /**
-     * @ORM\Column(name="email", type="string", length=50)
+     * @ORM\Column(name="email", type="string", length=50, nullable=true)
      */
     protected $email;
 
     /**
-     * @ORM\Column(name="notes", type="string")
+     * @ORM\Column(name="notes", type="string", nullable=true)
      */
     protected $notes;
 
     /**
-     * @ORM\Column(name="date_creation", type="date")
+     * @ORM\Column(name="date_creation", type="date", nullable=true)
      */
     protected $dateCreation;
 
     /**
-     * @ORM\Column(name="date_edit", type="date")
+     * @ORM\Column(name="date_edit", type="date", nullable=true)
      */
     protected $dateEdit;
 
@@ -98,17 +103,81 @@ class Person
     /**
      * @return string
      */
-    public function getName()
+    public function getFirstName()
     {
-        return $this->name;
+        return $this->firstName;
     }
 
     /**
-     * @param string $name
+     * @param string $firstName
      */
-    public function setName($name)
+    public function setFirstName($firstName)
     {
-        $this->name = $name;
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * @param string $surname
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param string $surname
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocality()
+    {
+        return $this->locality;
+    }
+
+    /**
+     * @param string $locality
+     */
+    public function setLocality($locality)
+    {
+        $this->locality = $locality;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCellularNumber()
+    {
+        return $this->cellularNumber;
+    }
+
+    /**
+     * @param string $cellularNumber
+     */
+    public function setCellularNumber($cellularNumber)
+    {
+        $this->cellularNumber = $cellularNumber;
     }
 
     /**
@@ -128,7 +197,7 @@ class Person
     }
 
     /**
-     * @return string
+     * @return date
      */
     public function getDateCreation()
     {
@@ -136,10 +205,10 @@ class Person
     }
 
     /**
-     * @param string $notes
+     * @param date $dateCreation
      */
     public function setDateCreation($dateCreation)
     {
         $this->dateCreation = $dateCreation;
-    }
+    } 
 }

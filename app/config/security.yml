@@ -1,2 +1,6 @@
-imports:
-    - { resource: @BSUserBundle/Resources/config/security.yml }
+security:
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
