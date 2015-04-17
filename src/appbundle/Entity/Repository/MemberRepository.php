@@ -43,4 +43,21 @@ class MemberRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findByCell($idCell, $orderBy = null, $direction = 'ASC')
+    {
+        $qb = $this->createQueryBuilder($alias = 'm');
+
+        $qb->where('m.cell_id LIKE :idCell')
+            ->setParameter('idCell', $idCell);
+
+        if ($orderBy == 'm.name') {
+            $qb->orderBy('m.surname', $direction);
+            $qb->orderBy('m.firstName', $direction);
+        } else if (null != $orderBy) {
+            $qb->orderBy($orderBy, $direction);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }

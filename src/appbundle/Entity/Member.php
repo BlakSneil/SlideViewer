@@ -21,12 +21,14 @@ class Member extends Person
     private $liveYear;
 
     /**
-     * @ORM\Column(name="role", type="string", length=10, nullable=true)
+     * @ORM\ManyToOne(targetEntity="MemberRole")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
     private $role;
 
     /**
-     * @ORM\Column(name="id_cell", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Cell", inversedBy="members")
+     * @ORM\JoinColumn(name="cell_id", referencedColumnName="id")
      */
     private $cell;
 
@@ -36,7 +38,8 @@ class Member extends Person
     private $pathPhoto;
 
     /**
-     * @ORM\Column(name="id_color", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Color")
+     * @ORM\JoinColumn(name="color_id", referencedColumnName="id")
      */
     private $color;
 
@@ -95,7 +98,7 @@ class Member extends Person
     }
 
     /**
-     * @return string
+     * @return Cell
      */
     public function getCell()
     {
@@ -103,7 +106,7 @@ class Member extends Person
     }
 
     /**
-     * @param string $cell
+     * @param Cell $cell
      */
     public function setCell($cell)
     {
@@ -139,7 +142,7 @@ class Member extends Person
      */
     public function setColor($color)
     {
-        $this->cell = $color;
+        $this->color = $color;
     }
 
     /**

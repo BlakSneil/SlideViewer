@@ -63,8 +63,9 @@ class CellController extends Controller
         }
 
         // TODO: cercare i membri di quella cellula e visualizzarli
+        $members = $repo->findCell($cell->getId(), $sort, $direction);
 
-        return $this->render('Cell/view.html.twig', array('cell' => $cell));
+        return $this->render('Members/list.html.twig', array('cell' => $cell, 'members' => $members));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="cell")
@@ -27,6 +28,15 @@ class Cell
      */
     private $notes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Member", mappedBy="cell")
+     */
+    private $members;
+
+
+    public function __construct() {
+        $this->members = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -66,5 +76,21 @@ class Cell
     public function setNotes($notes)
     {
         $this->notes = $notes;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * @param mixed $member
+     */
+    public function addMember($member)
+    {
+        //$this->members->add($member);
     }
 }

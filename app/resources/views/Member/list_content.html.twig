@@ -1,31 +1,27 @@
 <table class="table table-striped table-hover table-bordered knp-table">
     <thead>
     <tr>
-        <th class="unclickable"></th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('m.color') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Color', 'm.color') }}</th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('m.isActive') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Active', 'm.isActive') }}</th>
+        <th title="Color"><i class="fa fa-sort{% if pagination.isSorted('m.color') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'C', 'm.color') }}</th>
+        <th title="Is active"><i class="fa fa-sort{% if pagination.isSorted('m.isActive') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'A', 'm.isActive') }}</th>
+        <th title="Role"><i class="fa fa-sort{% if pagination.isSorted('m.role') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'R', 'm.role') }}</th>
         <th><i class="fa fa-sort{% if pagination.isSorted('m.name') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Name', 'm.name') }}</th>
+        <th><i class="fa fa-sort{% if pagination.isSorted('m.cell') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Cell', 'm.cell') }}</th>
         <th><i class="fa fa-sort{% if pagination.isSorted('m.birthday') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Birthday', 'm.birthday') }}</th>
         <th><i class="fa fa-sort{% if pagination.isSorted('m.locality') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Locality', 'm.locality') }}</th>
         <th><i class="fa fa-sort{% if pagination.isSorted('m.cellularNumber') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Cellular', 'm.cellularNumber') }}</th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('m.role') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Role', 'm.role') }}</th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('m.cell') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Cell', 'm.cell') }}</th>
     </tr>
     </thead>
     <tbody>
         {% for p in pagination %}
             <tr>
-                <td>
-                    <a href="{{ path("member_edit", {'id': p.id}) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                </td>
-                <td><i class="fa fa-square color-{{ p.color == 'green' ? 'green' : 'red' }}"></i></td>
+                <td><i class="fa fa-square color-{{ p.color.name }}"></i></td>
                 <td><i class="fa fa-circle color-{{ p.isActive ? 'green' : 'red' }}"></i></td>
-                <td class="background-green">{{ p.surname }} {{ p.firstName }}</td>
+                <td title="{{ p.role.name }}"><i class="fa fa-{{ p.role.name == 'ragazzo' ? 'child' : 'user-secret'}}"</td>
+                <td><a href="{{ path("member_edit", {'id': p.id}) }}">{{ p.surname }} {{ p.firstName }}</a></td>
+                <td>{{ p.cell.name }}</td>
                 <td>{{ p.birthday|date('Y.m.d') }}</td>
                 <td>{{ p.locality }}</td>
                 <td>{{ p.cellularNumber }}</td>
-                <td>{{ p.role }}</td>
-                <td>{{ p.cell }}</td>
             </tr>
         {% endfor %}
     </tbody>
