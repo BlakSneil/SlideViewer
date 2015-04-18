@@ -52,10 +52,10 @@ class CellController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        /** @var RoleRepository $repo */
+        /** @var CellRepository $repo */
         $repo = $this->getDoctrine()->getRepository('AppBundle:Cell');
 
-        /** @var Slide $slide */
+        /** @var Cell $cell */
         $cell = $repo->find($id);
 
         if ($cell == null) {
@@ -80,11 +80,11 @@ class CellController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        /** @var RoleRepository $repo */
+        /** @var CellRepository $repo */
         $repo = $this->getDoctrine()->getRepository('AppBundle:Cell');
 
 
-        /** @var Slide $slide */
+        /** @var Cell $cell */
         $cell = null != $id ? $repo->find($id) : new Cell();
 
         $form = $this->createForm(new CellType('AppBundle\Entity\Cell'), $cell)

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Repository\CellRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as MVC;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

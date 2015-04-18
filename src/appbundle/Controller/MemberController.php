@@ -53,7 +53,7 @@ class MemberController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        /** @var RoleRepository $repo */
+        /** @var MemberRepository $repo */
         $repo = $this->getDoctrine()->getRepository('AppBundle:Member');
 
         /** @var Member $member */
@@ -78,7 +78,7 @@ class MemberController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        /** @var RoleRepository $repo */
+        /** @var MemberRepository $repo */
         $repo = $this->getDoctrine()->getRepository('AppBundle:Member');
 
 

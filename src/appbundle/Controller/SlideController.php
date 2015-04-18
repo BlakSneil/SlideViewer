@@ -52,7 +52,7 @@ class SlideController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        /** @var RoleRepository $repo */
+        /** @var SlideRepository $repo */
         $repo = $this->getDoctrine()->getRepository('AppBundle:Slide');
 
         /** @var Slide $slide */
@@ -77,7 +77,7 @@ class SlideController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        /** @var RoleRepository $repo */
+        /** @var SlideRepository $repo */
         $repo = $this->getDoctrine()->getRepository('AppBundle:Slide');
 
 
