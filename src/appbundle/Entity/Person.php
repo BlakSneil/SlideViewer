@@ -165,6 +165,86 @@ class Person
     }
 
     /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateEdit()
+    {
+        return $this->dateEdit;
+    }
+
+    /**
+     * @param mixed $dateEdit
+     */
+    public function setDateEdit($dateEdit)
+    {
+        $this->dateEdit = $dateEdit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param mixed $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStreetName()
+    {
+        return $this->streetName;
+    }
+
+    /**
+     * @param mixed $streetName
+     */
+    public function setStreetName($streetName)
+    {
+        $this->streetName = $streetName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStreetNumber()
+    {
+        return $this->streetNumber;
+    }
+
+    /**
+     * @param mixed $streetNumber
+     */
+    public function setStreetNumber($streetNumber)
+    {
+        $this->streetNumber = $streetNumber;
+    }
+
+    /**
      * @return string
      */
     public function getLocality()
@@ -178,6 +258,38 @@ class Person
     public function setLocality($locality)
     {
         $this->locality = $locality;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelephoneNumber()
+    {
+        return $this->telephoneNumber;
+    }
+
+    /**
+     * @param mixed $telephoneNumber
+     */
+    public function setTelephoneNumber($telephoneNumber)
+    {
+        $this->telephoneNumber = $telephoneNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * @param mixed $zipCode
+     */
+    public function setZipCode($zipCode)
+    {
+        $this->zipCode = $zipCode;
     }
 
     /**
