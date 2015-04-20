@@ -21,12 +21,6 @@ class Member extends Person
     private $liveYear;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MemberRole")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
-     */
-    private $role;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Cell", inversedBy="members")
      * @ORM\JoinColumn(name="cell_id", referencedColumnName="id")
      */
@@ -79,22 +73,6 @@ class Member extends Person
     public function setLiveYear($liveYear)
     {
         $this->liveYear = $liveYear;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param string $role
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
     }
 
     /**

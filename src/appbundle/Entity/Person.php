@@ -132,6 +132,22 @@ class Person
         $this->surname = $surname;
     }
 
+   /**
+     * @return string
+     */
+    public function getFiscalCode()
+    {
+        return $this->fiscalCode;
+    }
+
+    /**
+     * @param string $fiscalCode
+     */
+    public function setFiscalCode($fiscalCode)
+    {
+        $this->fiscalCode = $fiscalCode;
+    }
+
     /**
      * @return string
      */

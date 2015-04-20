@@ -5,10 +5,10 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="member_role")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\RoleRepository")
+ * @ORM\Table(name="live_year")
+ * @ORM\Entity(repositoryClass="Doctrine\ORM\EntityRepository")
  */
-class MemberRole
+class LiveYear
 {
     /**
      * @ORM\Id()
@@ -21,7 +21,6 @@ class MemberRole
      * @ORM\Column(name="name", type="string", length=30)
      */
     private $name;
-
 
     /**
      * @return integer

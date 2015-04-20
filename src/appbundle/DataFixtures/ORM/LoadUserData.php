@@ -32,8 +32,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use AppBundle\Entity\Slide;
 use AppBundle\Entity\Cell;
 use AppBundle\Entity\Member;
-use AppBundle\Entity\MemberRole;
+use AppBundle\Entity\LiveYear;
 use AppBundle\Entity\Color;
+use AppBundle\Entity\Event;
 
 class LoadUserData implements FixtureInterface, ContainerAwareInterface
 {
@@ -66,14 +67,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $color2->setValue('#00ff00');
         $manager->persist($color2);
 
-        $role = new MemberRole();
-        $role->setName('animatore');
-        $manager->persist($role);
-
-        $role = new MemberRole();
-        $role->setName('ragazzo');
-        $manager->persist($role);
-
         for ($i = 0; $i < 20 ; $i++) { 
             /** @var Slide $slide */
             $slide = new Slide();
@@ -92,6 +85,16 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             $manager->persist($cell);
         }
 
+        for ($i = 1; $i <= 5 ; $i++) { 
+            /** @var LiveYear $liveYear */
+            $liveYear = new LiveYear();
+            $liveYear->setName($i);
+            $manager->persist($liveYear);
+        }
+        $liveYear = new LiveYear();
+        $liveYear->setName('CRA');
+        $manager->persist($liveYear);
+
         $cell = new Cell();
         $cell->setName('Directive');
         $cell->setNotes('Here are some notes of Directive');
@@ -103,7 +106,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $member->setBirthday(date_create('2000-01-01'));
         $member->setLocality('Udine');
         $member->setCellularNumber('3331234567');
-        $member->setRole($role);
+        $member->setLiveYear('2');
         $member->setCell($cell);
         $member->setIsActive(true);
         $member->setColor($color);
@@ -115,12 +118,33 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $member->setBirthday(date_create('1997-01-01'));
         $member->setLocality('Gonars');
         $member->setCellularNumber('3339876543');
-        $member->setRole($role);
+        $member->setLiveYear('CRA');
         $member->setCell($cell);
         $member->setIsActive(false);
         $member->setColor($color2);
-
         $manager->persist($member);
+
+        $event = new Event();
+        $event->setName('Domenica Live maggio 2015');
+        $event->setDescription('La Domenica Live che si tiene a maggio 2015');
+        $event->setDateFrom(date_create('2015-05-17'));
+        $event->setDateTo(date_create('2015-05-17'));
+        $manager->persist($event);
+
+        $event = new Event();
+        $event->setName('Domenica Live aprile 2015');
+        $event->setDescription('La Domenica Live che si tiene ad aprile 2015');
+        $event->setDateFrom(date_create('2015-04-19'));
+        $event->setDateTo(date_create('2015-04-19'));
+        $manager->persist($event);
+
+        $event = new Event();
+        $event->setName('Campo Live 2015');
+        $event->setDescription('Campo Live estivo 2015');
+        $event->setDateFrom(date_create('2015-08-03'));
+        $event->setDateTo(date_create('2015-08-09'));
+        $manager->persist($event);
+
         $manager->flush();
-   }
+    }
 }

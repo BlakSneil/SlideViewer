@@ -49,6 +49,11 @@ class CellController extends Controller
      */
     public function viewAction(Request $request, $id = null)
     {
+        $name = $request->query->get('name', null);
+        $page = $request->query->get('page', 1);
+        $sort = $request->query->get('sort', null);
+        $direction = $request->query->get('direction', null);
+
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
@@ -57,15 +62,25 @@ class CellController extends Controller
 
         /** @var Cell $cell */
         $cell = $repo->find($id);
-
         if ($cell == null) {
             $this->get('session')->getFlashBag()->add('error', 'La cellula selezionata non è stata trovata.');
         }
 
-        // TODO: cercare i membri di quella cellula e visualizzarli
-        $members = $repo->findCell($cell->getId(), $sort, $direction);
+        /** @var MemberRepository $repo */
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Member');
 
-        return $this->render('Members/list.html.twig', array('cell' => $cell, 'members' => $members));
+        $members = null == $name ? $repo->findByCell($cell, $sort, $direction) : $repo->findByCellAndName($cell, $name, $sort, $direction);
+
+        if ($page * 10  > sizeof($members) + 10) {
+            $page = 1;
+        }
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($members, $page, 10);
+
+        $twigName = $request->isXmlHttpRequest() ? 'Member/list_content.html.twig' : 'Member/list.html.twig';
+
+        return $this->render($twigName, array('pagination' => $pagination, 'name' => $name, 'cell' => $cell));
     }
 
     /**

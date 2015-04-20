@@ -24,7 +24,7 @@ class Cell
     private $name;
 
     /**
-     * @ORM\Column(name="notes", type="string")
+     * @ORM\Column(name="notes", type="string", nullable=true)
      */
     private $notes;
 
@@ -84,13 +84,5 @@ class Cell
     public function getMembers()
     {
         return $this->members;
-    }
-
-    /**
-     * @param mixed $member
-     */
-    public function addMember($member)
-    {
-        //$this->members->add($member);
     }
 }
