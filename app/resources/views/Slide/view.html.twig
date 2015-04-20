@@ -6,5 +6,14 @@
 
     <br>
 
-    View
+    <div id="openseadragon1" style="width: 100%; height: 600px;"></div>
+    <script src="{{ asset('components/openseadragon/built-openseadragon/openseadragon/openseadragon.min.js') }}"></script>
+    <script type="text/javascript">
+        var viewer = OpenSeadragon({
+            id: "openseadragon1",
+            prefixUrl: "{{ asset('components/openseadragon/built-openseadragon/openseadragon/images/') }}",
+            tileSources: "{{  asset('components/openseadragon/built-openseadragon/openseadragon/images/mydz.dzi') }}"
+        });
+    </script>
+
 {% endblock content %}

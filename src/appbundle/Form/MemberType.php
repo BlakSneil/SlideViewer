@@ -16,7 +16,6 @@ class MemberType extends AbstractType
             'format' => 'yyyy-MM-dd',
         ));
 
-/*
         $builder->add('streetName', 'text');
         $builder->add('streetNumber', 'text');
         $builder->add('locality', 'text');
@@ -26,8 +25,6 @@ class MemberType extends AbstractType
         $builder->add('cellularNumber', 'text');
         $builder->add('email', 'email');
         $builder->add('notes', 'textarea');
-*/ 
-
 
         $builder->add('school', 'text');
 
