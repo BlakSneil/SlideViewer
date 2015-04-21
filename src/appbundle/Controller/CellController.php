@@ -13,7 +13,7 @@ use AppBundle\Form\CellType;
 class CellController extends Controller
 {
     /**
-     * @MVC\Route("/cells", name="admin_cell_list")
+     * @MVC\Route("/admin/cells", name="admin_cell_list")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */

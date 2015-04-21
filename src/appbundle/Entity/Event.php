@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="event")
- * @ORM\Entity(repositoryClass="Doctrine\ORM\EntityRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\EventRepository")
  */
 class Event
 {
