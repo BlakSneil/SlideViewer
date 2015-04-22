@@ -6,6 +6,7 @@
         <th><i class="fa fa-sort{% if pagination.isSorted('e.description') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Description', 'e.description') }}</th>
         <th><i class="fa fa-sort{% if pagination.isSorted('e.dateFrom') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Date From', 'e.dateFrom') }}</th>
         <th><i class="fa fa-sort{% if pagination.isSorted('e.dateTo') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Date To', 'e.dateTo') }}</th>
+        <th><i class="fa fa-sort{% if pagination.isSorted('e.locality') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Locality', 'e.locality') }}</th>
     </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
                 <td>{{ c.description }}</td>
                 <td>{{ c.dateFrom|date('d.m.Y') }}</td>
                 <td>{{ c.dateTo|date('d.m.Y') }}</td>
+                <td>{{ c.locality }}</td>
             </tr>
         {% endfor %}
     </tbody>

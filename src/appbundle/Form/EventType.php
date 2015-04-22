@@ -19,6 +19,7 @@ class EventType extends AbstractType
             'widget' => 'single_text',
             'format' => 'yyyy-MM-dd',
         ));
+        $builder->add('locality', 'text');
         $builder->add('notes', 'textarea');
     }
 

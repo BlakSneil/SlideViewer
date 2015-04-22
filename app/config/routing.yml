@@ -4,3 +4,15 @@ app:
 
 bs_user_bundle:
     resource: "@BSUserBundle/Resources/config/routing.yml"
+
+admin_event_list:
+    path:      /admin/events
+    defaults:  { _controller: AppBundle:Event:list }
+
+admin_event_create:
+    path:      /admin/event/create
+    defaults:  { _controller: AppBundle:Event:persist }
+
+admin_event_edit:
+    path:      /admin/event/edit/{id}
+    defaults:  { _controller: AppBundle:Event:persist }

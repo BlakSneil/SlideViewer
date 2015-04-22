@@ -129,6 +129,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $event->setDescription('La Domenica Live che si tiene a maggio 2015');
         $event->setDateFrom(date_create('2015-05-17'));
         $event->setDateTo(date_create('2015-05-17'));
+        $event->setLocality("Udine")
         $manager->persist($event);
 
         $event = new Event();
@@ -136,6 +137,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $event->setDescription('La Domenica Live che si tiene ad aprile 2015');
         $event->setDateFrom(date_create('2015-04-19'));
         $event->setDateTo(date_create('2015-04-19'));
+        $event->setLocality("Santa Maria La Longa")
         $manager->persist($event);
 
         $event = new Event();
@@ -143,6 +145,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $event->setDescription('Campo Live estivo 2015');
         $event->setDateFrom(date_create('2015-08-03'));
         $event->setDateTo(date_create('2015-08-09'));
+        $event->setLocality("Pierabech")
         $manager->persist($event);
 
         $manager->flush();

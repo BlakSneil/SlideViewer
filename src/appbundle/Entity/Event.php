@@ -38,6 +38,11 @@ class Event
     private $dateTo;
 
     /**
+     * @ORM\Column(name="locality", type="string", nullable=true)
+     */
+    private $locality;
+
+    /**
      * @ORM\Column(name="notes", type="string", nullable=true)
      */
     private $notes;
@@ -113,6 +118,22 @@ class Event
     public function setDateTo($dateTo)
     {
         $this->dateTo = $dateTo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocality()
+    {
+        return $this->locality;
+    }
+
+    /**
+     * @param string $locality
+     */
+    public function setLocality($locality)
+    {
+        $this->locality = $locality;
     }
 
     /**

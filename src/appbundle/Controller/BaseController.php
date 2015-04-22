@@ -13,9 +13,10 @@ class BaseController extends Controller
     protected $baseClass = "BaseClass";
 
     /**
-    * @param Request $request
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
+     * @MVC\Route("/base_class_list", name="base_class_list")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function listAction(Request $request)
     {
         $name = $request->query->get('name', null);
@@ -38,6 +39,8 @@ class BaseController extends Controller
     }
 
     /**
+     * @MVC\Route("/base_class/create", name="base_class_create")
+     * @MVC\Route("/base_class/edit/{id}", name="base_class_edit")
      * @param Request $request
      * @param id
      * @return \Symfony\Component\HttpFoundation\Response
@@ -47,9 +50,7 @@ class BaseController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        $obj = null != $id ? $this->getRepo()->find($id) : new $this->baseClass();
-
-        $baseClassType = $this->baseClass . 'Type';
+        $obj = null != $id ? $this->getRepo()->find($id) : $this->getRepo()->newInstance();
 
         $form = $this->createForm($this->newFormType(), $obj)->handleRequest($request);
 

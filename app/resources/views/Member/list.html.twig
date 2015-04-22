@@ -8,7 +8,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('bundles/app/js/Member/list.js') }}"></script>
+    <script src="{{ asset('bundles/bsuser/js/list.js') }}"></script>
     <script src="{{ asset('bundles/app/js/input-clearer.js') }}"></script>
 {% endblock %}
 
@@ -36,7 +36,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="bs-pagination-element">
+        <div class="bs-pagination-element" data-list-name="members">
             {% include 'Member/list_content.html.twig' %}
         </div>
     </div>
