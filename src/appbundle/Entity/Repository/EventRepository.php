@@ -2,10 +2,10 @@
 namespace AppBundle\Entity\Repository;
 
 use AppBundle\Entity\Event;
-use Doctrine\ORM\EntityRepository;
+use BS\CRUDBundle\Entity\Repository\BSBaseRepository;
 use Doctrine\ORM\Query;
 
-class EventRepository extends EntityRepository
+class EventRepository extends BSBaseRepository
 {
     public function newInstance()
     {

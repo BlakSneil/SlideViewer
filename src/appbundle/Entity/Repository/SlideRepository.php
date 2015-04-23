@@ -2,10 +2,10 @@
 namespace AppBundle\Entity\Repository;
 
 use AppBundle\Entity\Slide;
-use Doctrine\ORM\EntityRepository;
+use BS\CRUDBundle\Entity\Repository\BSBaseRepository;
 use Doctrine\ORM\Query;
 
-class SlideRepository extends EntityRepository
+class SlideRepository extends BSBaseRepository
 {
     public function newInstance()
     {

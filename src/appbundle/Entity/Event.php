@@ -28,12 +28,12 @@ class Event
     private $description;
 
     /**
-     * @ORM\Column(name="date_from", type="date")
+     * @ORM\Column(name="date_from", type="date", nullable=true)
      */
     private $dateFrom;
 
     /**
-     * @ORM\Column(name="date_to", type="date")
+     * @ORM\Column(name="date_to", type="date", nullable=true)
      */
     private $dateTo;
 

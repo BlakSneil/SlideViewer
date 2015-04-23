@@ -2,10 +2,10 @@
 namespace AppBundle\Entity\Repository;
 
 use AppBundle\Entity\Cell;
-use Doctrine\ORM\EntityRepository;
+use BS\CRUDBundle\Entity\Repository\BSBaseRepository;
 use Doctrine\ORM\Query;
 
-class CellRepository extends EntityRepository
+class CellRepository extends BSBaseRepository
 {
     public function newInstance()
     {

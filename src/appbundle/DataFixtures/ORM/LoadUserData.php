@@ -24,6 +24,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use DateTime;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -72,7 +73,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
             $slide = new Slide();
             $slide->setName('Slide ' . $i);
             $slide->setDescription('This is the slide n°' . $i);
-            $slide->setDateCreation(date_create(date('Y-m-d H:i:s')));
+            $slide->setDateCreation(new DateTime(date('Y-m-d H:i:s')));
             $slide->setNotes('Created from data fixtures');
             $manager->persist($slide);
         }
@@ -103,7 +104,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $member = new Member();
         $member->setFirstName('Paolo');
         $member->setSurname('Rossi');
-        $member->setBirthday(date_create('2000-01-01'));
+        $member->setBirthday(new DateTime('2000-01-01'));
         $member->setLocality('Udine');
         $member->setCellularNumber('3331234567');
         $member->setLiveYear('2');
@@ -115,7 +116,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $member = new Member();
         $member->setFirstName('Rolando');
         $member->setSurname('Bianchi');
-        $member->setBirthday(date_create('1997-01-01'));
+        $member->setBirthday(new DateTime('1997-01-01'));
         $member->setLocality('Gonars');
         $member->setCellularNumber('3339876543');
         $member->setLiveYear('CRA');
@@ -127,25 +128,25 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $event = new Event();
         $event->setName('Domenica Live maggio 2015');
         $event->setDescription('La Domenica Live che si tiene a maggio 2015');
-        $event->setDateFrom(date_create('2015-05-17'));
-        $event->setDateTo(date_create('2015-05-17'));
-        $event->setLocality("Udine")
+        $event->setDateFrom(new DateTime('2015-05-17'));
+        $event->setDateTo(new DateTime('2015-05-17'));
+        $event->setLocality("Udine");
         $manager->persist($event);
 
         $event = new Event();
         $event->setName('Domenica Live aprile 2015');
         $event->setDescription('La Domenica Live che si tiene ad aprile 2015');
-        $event->setDateFrom(date_create('2015-04-19'));
-        $event->setDateTo(date_create('2015-04-19'));
-        $event->setLocality("Santa Maria La Longa")
+        $event->setDateFrom(new DateTime('2015-04-19'));
+        $event->setDateTo(new DateTime('2015-04-19'));
+        $event->setLocality("Santa Maria La Longa");
         $manager->persist($event);
 
         $event = new Event();
         $event->setName('Campo Live 2015');
         $event->setDescription('Campo Live estivo 2015');
-        $event->setDateFrom(date_create('2015-08-03'));
-        $event->setDateTo(date_create('2015-08-09'));
-        $event->setLocality("Pierabech")
+        $event->setDateFrom(new DateTime('2015-08-03'));
+        $event->setDateTo(new DateTime('2015-08-09'));
+        $event->setLocality("Pierabech");
         $manager->persist($event);
 
         $manager->flush();
