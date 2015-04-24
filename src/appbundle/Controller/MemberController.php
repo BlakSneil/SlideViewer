@@ -29,7 +29,6 @@ class MemberController extends Controller
 
         $members = null == $name ? $repo->findAll($sort, $direction) : $repo->findByName($name, $sort, $direction);
 
-
         if ($page * 10  > sizeof($members) + 10) {
             $page = 1;
         }

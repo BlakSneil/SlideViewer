@@ -16,32 +16,57 @@ class MemberType extends AbstractType
             'format' => 'yyyy-MM-dd',
         ));
 
-        $builder->add('streetName', 'text');
-        $builder->add('streetNumber', 'text');
-        $builder->add('locality', 'text');
-        $builder->add('zipCode', 'text');
-        $builder->add('state', 'text');
-        $builder->add('telephoneNumber', 'text');
-        $builder->add('cellularNumber', 'text');
-        $builder->add('email', 'email');
-        $builder->add('notes', 'textarea');
+        $builder->add('streetName', 'text', array(
+            'required' => false
+        ));
+        $builder->add('streetNumber', 'text', array(
+            'required' => false
+        ));
+        $builder->add('locality', 'text', array(
+            'required' => false
+        ));
+        $builder->add('zipCode', 'text', array(
+            'required' => false
+        ));
+        //$builder->add('state', 'text', array(
+        //    'required' => false
+        //));
+        $builder->add('telephoneNumber', 'text', array(
+            'required' => false
+        ));
+        $builder->add('cellularNumber', 'text', array(
+            'required' => false
+        ));
+        $builder->add('email', 'email', array(
+            'required' => false
+        ));
+        $builder->add('notes', 'textarea', array(
+            'required' => false
+        ));
 
-        $builder->add('school', 'text');
+        $builder->add('school', 'text', array(
+            'required' => false
+        ));
 
         $builder->add('liveYear', 'entity', array(
             'class' => 'AppBundle:LiveYear',
             'property' => 'name',
+            'required' => false
         ));
         $builder->add('cell', 'entity', array(
             'class' => 'AppBundle:Cell',
             'property' => 'name',
+            'required' => false
         ));
 
-        $builder->add('pathPhoto', 'file');
+        $builder->add('pathPhoto', 'file', array(
+            'required' => false
+        ));
 
         $builder->add('color', 'entity', array(
             'class' => 'AppBundle:Color',
             'property' => 'name',
+            'required' => false
         ));
 
         $builder->add('isActive', 'choice', array(
