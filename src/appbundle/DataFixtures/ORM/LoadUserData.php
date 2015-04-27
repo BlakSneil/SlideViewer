@@ -68,6 +68,18 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $color2->setValue('#00ff00');
         $manager->persist($color2);
 
+        $color = new Color();
+        $color->setName('blue');
+        $manager->persist($color);
+
+        $color = new Color();
+        $color->setName('cyan');
+        $manager->persist($color);
+
+        $color = new Color();
+        $color->setName('orange');
+        $manager->persist($color);
+
         for ($i = 0; $i < 20 ; $i++) { 
             /** @var Slide $slide */
             $slide = new Slide();

@@ -47,6 +47,10 @@ class Event
      */
     private $notes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="MemberPartecipation", mappedBy="event")
+     */
+    private $partecipations;
 
     /**
      * @return integer
@@ -150,5 +154,21 @@ class Event
     public function setNotes($notes)
     {
         $this->notes = $notes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPartecipations()
+    {
+        return $this->partecipations;
+    }
+
+    /**
+     * @param string $partecipations
+     */
+    public function setPartecipations($partecipations)
+    {
+        $this->partecipations = $partecipations;
     }
 }

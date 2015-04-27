@@ -1,5 +1,10 @@
 {% extends 'Member/base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/member-color.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 
 <h4>Member: {{ name }}</h4>

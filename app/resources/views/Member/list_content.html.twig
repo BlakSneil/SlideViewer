@@ -3,7 +3,7 @@
     <tr>
         <th title="Color"><i class="fa fa-sort{% if pagination.isSorted('m.color') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'C', 'm.color') }}</th>
         <th title="Is active"><i class="fa fa-sort{% if pagination.isSorted('m.isActive') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'A', 'm.isActive') }}</th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('m.liveYear') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Year', 'm.liveYear') }}</th>
+        <th><i class="fa fa-sort{% if pagination.isSorted('m.liveYear') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Year'|trans({}, 'messages'), 'm.liveYear') }}</th>
         <th><i class="fa fa-sort{% if pagination.isSorted('m.name') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Name', 'm.name') }}</th>
         <th><i class="fa fa-sort{% if pagination.isSorted('m.cell') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Cell', 'm.cell') }}</th>
         <th><i class="fa fa-sort{% if pagination.isSorted('m.birthday') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Birthday', 'm.birthday') }}</th>

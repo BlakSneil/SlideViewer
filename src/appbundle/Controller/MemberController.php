@@ -97,6 +97,6 @@ class MemberController extends Controller
             return $this->redirect($this->generateUrl('member_edit', array('id' => $member->getId())));
         }
 
-        return $this->render('Member/edit.html.twig', array('form' => $form->createView(), 'name' => $member->getFirstName() . ' ' . $member->getSurname()));
+        return $this->render('Member/edit.html.twig', array('form' => $form->createView(), 'name' => $member->getFirstName() . ' ' . $member->getSurname(), 'member' => $member));
     }
 }

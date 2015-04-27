@@ -41,4 +41,21 @@ class EventRepository extends BSBaseRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findByNameWithPartecipations($member, $orderBy = null, $direction = 'ASC')
+    {
+        $qb = $this->createQueryBuilder($alias = 'e');
+
+
+        $qb->leftJoin('e.partecipations', 'p')
+            ->where('p.member = :member')
+            ->setParameter('member', $member);
+
+        if (null != $orderBy) {
+            $qb->orderBy($orderBy, $direction);
+        }
+
+        return $qb->getQuery()->getResult();
+
+    }
 }
