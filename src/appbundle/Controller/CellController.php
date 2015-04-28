@@ -78,7 +78,7 @@ class CellController extends Controller
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate($members, $page, 10);
 
-        $twigName = $request->isXmlHttpRequest() ? 'Member/list_content.html.twig' : 'Member/list.html.twig';
+        $twigName = $request->isXmlHttpRequest() ? 'Member/list_content_cell.html.twig' : 'Member/list.html.twig';
 
         return $this->render($twigName, array('pagination' => $pagination, 'name' => $name, 'cell' => $cell));
     }

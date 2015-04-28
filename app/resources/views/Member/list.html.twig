@@ -1,5 +1,7 @@
 {% extends 'Member/base.html.twig' %}
 
+{% trans_default_domain "app" %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('bundles/bsuser/css/paginator.css') }}" rel="stylesheet" />
@@ -21,7 +23,7 @@
     <div class="col-md-3 col-md-offset-2 text-right">
         <form class="bs-pagination-search" action="{{ app.request.uri }}" method="GET">
             <div class="input-group">
-                <input name="name" class="form-control has-input-clearer" type="search" placeholder="Find by name..." value="{{ name }}">
+                <input name="name" class="form-control has-input-clearer" type="search" placeholder="{{'action.findbyname'|trans}}..." value="{{ name }}">
                 <span class="form-control-feedback input-clearer glyphicon glyphicon-remove"></span>
                 <div class="input-group-btn">
                     <button type="submit" id="search-button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
@@ -30,14 +32,14 @@
         </form>
     </div>
     <div class="col-md-1 text-right">
-        <a href="{{ path('member_create') }}" class="btn btn-success">New</a>
+        <a href="{{ path('member_create') }}" class="btn btn-success">{{'action.new'|trans}}</a>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
         <div class="bs-pagination-element" data-list-name="members">
-            {% include 'Member/list_content.html.twig' %}
+            {% include (cell is defined ? 'Member/list_content_cell.html.twig' : 'Member/list_content.html.twig') %}
         </div>
     </div>
 </div>
