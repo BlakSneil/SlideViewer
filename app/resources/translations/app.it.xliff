@@ -8,10 +8,24 @@
 				<source>members.pagination.title</source>
 				<target>Membri</target>
 			</trans-unit>
-			<trans-unit id="members.pagination.color">
-				<source>members.pagination.color</source>
+			<trans-unit id="members.pagination.color.title">
+				<source>members.pagination.color.title</source>
+				<target>Colore</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.color.label">
+				<source>members.pagination.color.label</source>
 				<target>C</target>
 			</trans-unit>
+
+			<trans-unit id="members.pagination.is_active.title">
+				<source>members.pagination.is_active.title</source>
+				<target>Attivo</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.is_active.label">
+				<source>members.pagination.is_active.label</source>
+				<target>A</target>
+			</trans-unit>
+
 			<trans-unit id="members.pagination.year">
 				<source>members.pagination.year</source>
 				<target>Anno</target>

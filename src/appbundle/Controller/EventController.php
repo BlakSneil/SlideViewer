@@ -21,17 +21,9 @@ class EventController extends BSController
 
 // nel twig mettere  {% render(controller('AppBundle:Event:partecipations', {'member' : member, 'request' : null})) %}
 
-    public function partecipationsAction($member, Request $request = null)
+    public function partecipationsAction(Request $request, $member)
     {
-    	if (null != $request) {
-	        //$name = $request->query->get('name', null);
-	        $page = $request->query->get('page', 1);
-	        $sort = $request->query->get('sort', 'dateFrom');
-	        $direction = $request->query->get('direction', 'DESC');
-	    }
+        var_dump("<h4>ciao</h4>");die();
 
-    	$events = $this->getRepository()->findByNameWithPartecipations($member, $orderBy = null, $direction = 'ASC');
-
-        return $this->render('Event/partecipations.html.twig', array('events' => $events));
     }
 }
