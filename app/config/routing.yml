@@ -5,6 +5,7 @@ app:
 bs_user_bundle:
     resource: "@BSUserBundle/Resources/config/routing.yml"
 
+# Event
 admin_event_list:
     path:      /admin/events
     defaults:  { _controller: AppBundle:Event:list }
@@ -16,3 +17,58 @@ admin_event_create:
 admin_event_edit:
     path:      /admin/event/edit/{id}
     defaults:  { _controller: AppBundle:Event:persist }
+
+# Slide
+slide_list:
+    path:      /slides
+    defaults:  { _controller: AppBundle:Slide:list }
+
+slide_create:
+    path:      /slide/create
+    defaults:  { _controller: AppBundle:Slide:persist }
+
+slide_edit:
+    path:      /slide/edit/{id}
+    defaults:  { _controller: AppBundle:Slide:persist }
+
+slide_view:
+    path:       /slide/view/{id}
+    defaults:  { _controller: AppBundle:Slide:view }
+
+# Member
+member_list:
+    path:      /members
+    defaults:  { _controller: AppBundle:Member:list }
+
+member_create:
+    path:      /member/create
+    defaults:  { _controller: AppBundle:Member:persist }
+
+member_edit:
+    path:      /member/edit/{id}
+    defaults:  { _controller: AppBundle:Member:persist }
+
+member_view:
+    path:       /member/view/{id}
+    defaults:  { _controller: AppBundle:Member:view }
+
+member_partecipation_list:
+    path:       /member/partecipations/{id}
+    defaults:  { _controller: AppBundle:Member:partecipations }
+
+# Cell
+admin_cell_list:
+    path:      /admin/cells
+    defaults:  { _controller: AppBundle:Cell:list }
+
+admin_cell_create:
+    path:      /admin/cell/create
+    defaults:  { _controller: AppBundle:Cell:persist }
+
+admin_cell_edit:
+    path:      /admin/cell/edit/{id}
+    defaults:  { _controller: AppBundle:Cell:persist }
+
+cell_view:
+    path:       /cell/view/{id}
+    defaults:  { _controller: AppBundle:Cell:view }

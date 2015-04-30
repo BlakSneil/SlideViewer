@@ -7,8 +7,6 @@ use BS\CRUDBundle\Controller\BSController;
 
 class EventController extends BSController
 {
-    protected $baseClass = 'Event';
-
     public function newFormType()
     {
         return new EventType('AppBundle\Entity\Event');
@@ -17,6 +15,16 @@ class EventController extends BSController
     public function getBaseClass()
     {
         return 'Event';
+    }
+
+    public function getPersistRoute()
+    {
+        return 'admin_event_edit';
+    }
+
+    public function getListRoute()
+    {
+        return 'admin_event_list';
     }
 
 // nel twig mettere  {% render(controller('AppBundle:Event:partecipations', {'member' : member, 'request' : null})) %}

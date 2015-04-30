@@ -138,5 +138,4 @@ class Member extends Person
     {
         $this->isActive = $isActive;
     }   
-
 }

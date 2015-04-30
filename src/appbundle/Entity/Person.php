@@ -339,4 +339,12 @@ class Person
     {
         $this->dateCreation = $dateCreation;
     } 
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->firstName . ' ' . $this->surname;
+    }
 }
