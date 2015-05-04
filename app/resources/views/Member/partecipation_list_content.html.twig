@@ -2,24 +2,24 @@
     <thead>
     <tr>
         <th class="unclickable"></th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('e.name') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Name', 'e.name') }}</th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('e.description') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Description', 'e.description') }}</th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('e.dateFrom') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Date From', 'e.dateFrom') }}</th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('e.dateTo') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Date To', 'e.dateTo') }}</th>
-        <th><i class="fa fa-sort{% if pagination.isSorted('e.locality') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Locality', 'e.locality') }}</th>
+        <th title="{{ 'Name' }}">{{ bs_header(pagination, 'Name', 'e.name') }}</th>
+        <th title="{{ 'Description' }}">{{ bs_header(pagination, 'Description', 'e.description') }}</th>
+        <th title="{{ 'Date From' }}">{{ bs_header(pagination, 'Date From', 'e.dateFrom') }}</th>
+        <th title="{{ 'Date To' }}">{{ bs_header(pagination, 'Date To', 'e.dateTo') }}</th>
+        <th title="{{ 'Expected' }}">{{ bs_header(pagination, 'Expected', 'e.expected') }}</th>
     </tr>
     </thead>
     <tbody>
         {% for e in pagination %}
             <tr>
                 <td>
-                    <a href="{{ path("admin_event_edit", {'id': e.id}) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                    <a href="{{ path("event_edit", {'id': e.id}) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
                 </td>
                 <td>{{ e.name }}</td>
                 <td>{{ e.description }}</td>
                 <td>{{ e.dateFrom|date('d.m.Y') }}</td>
                 <td>{{ e.dateTo|date('d.m.Y') }}</td>
-                <td>{{ e.locality }}</td>
+                <td>{{ e.expected }}</td>
             </tr>
         {% endfor %}
     </tbody>

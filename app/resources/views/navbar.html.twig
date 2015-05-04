@@ -23,8 +23,6 @@
 
                         <li{{ app.request.get('_route') matches '/cell*/' ? ' class="active"' : '' }}><a href="{{ path('admin_cell_list') }}"><i class="fa fa-leaf"></i> Cells</a></li>
 
-                        <li{{ app.request.get('_route') matches '/event*/' ? ' class="active"' : '' }}><a href="{{ path('admin_event_list') }}"><i class="fa fa-calendar"></i> Events</a></li>
-
                         <li><a href="{{ path('home') }}"><i class="fa fa-globe"></i> View Site</a></li>
 
                     {% else %}
@@ -41,6 +39,8 @@
                                 {% render(controller('AppBundle:Cell:navbarList')) %}
                             </ul>
                         </li>
+
+                        <li{{ app.request.get('_route') matches '/event*/' ? ' class="active"' : '' }}><a href="{{ path('event_list') }}"><i class="fa fa-calendar"></i> Events</a></li>
 
                     {% endif %}
 

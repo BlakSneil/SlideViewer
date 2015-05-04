@@ -6,16 +6,16 @@ bs_user_bundle:
     resource: "@BSUserBundle/Resources/config/routing.yml"
 
 # Event
-admin_event_list:
-    path:      /admin/events
+event_list:
+    path:      /events
     defaults:  { _controller: AppBundle:Event:list }
 
-admin_event_create:
-    path:      /admin/event/create
+event_create:
+    path:      /event/create
     defaults:  { _controller: AppBundle:Event:persist }
 
-admin_event_edit:
-    path:      /admin/event/edit/{id}
+event_edit:
+    path:      /event/edit/{id}
     defaults:  { _controller: AppBundle:Event:persist }
 
 # Slide

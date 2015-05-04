@@ -29,9 +29,11 @@
             </div>
         </form>
     </div>
-    <div class="col-md-1 text-right">
-        <a href="{{ path('admin_event_create') }}" class="btn btn-success">New</a>
-    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="col-md-1 text-right">
+            <a href="{{ path('event_create') }}" class="btn btn-success">New</a>
+        </div>
+    {% endif %}
 </div>
 
 <div class="row">

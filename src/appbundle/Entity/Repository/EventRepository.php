@@ -47,7 +47,7 @@ class EventRepository extends BSBaseRepository
         $qb = $this->createQueryBuilder($alias = 'e');
 
         $qb->leftJoin('e.partecipations', 'p')
-            ->where('p.member = :member')
+            ->where('p.member = :member OR p.member IS NULL')
             ->setParameter('member', $member);
 
         if (null != $orderBy) {
@@ -62,10 +62,10 @@ class EventRepository extends BSBaseRepository
         $qb = $this->createQueryBuilder($alias = 'e');
 
         $qb->leftJoin('e.partecipations', 'p')
-            ->where('p.member = :member')
+            ->where('p.member = :member OR p.member IS NULL')
             ->setParameter('member', $member);
-
-        $qb->where('e.name LIKE :name')
+            
+        $qb->andWhere('e.name LIKE :name')
             ->setParameter('name', '%' . $text . '%');
 
         if (null != $orderBy) {
