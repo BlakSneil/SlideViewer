@@ -46,7 +46,8 @@ class EventRepository extends BSBaseRepository
     {
         $qb = $this->createQueryBuilder($alias = 'e');
 
-        $qb->leftJoin('e.partecipations', 'p')
+        $qb->select('e event, p.expected, p.happened')
+            ->leftJoin('e.partecipations', 'p')
             ->where('p.member = :member OR p.member IS NULL')
             ->setParameter('member', $member);
 
@@ -61,7 +62,8 @@ class EventRepository extends BSBaseRepository
     {
         $qb = $this->createQueryBuilder($alias = 'e');
 
-        $qb->leftJoin('e.partecipations', 'p')
+        $qb->select('e event, p.expected, p.happened')
+            ->leftJoin('e.partecipations', 'p')
             ->where('p.member = :member OR p.member IS NULL')
             ->setParameter('member', $member);
             

@@ -7,19 +7,22 @@
         <th title="{{ 'Date From' }}">{{ bs_header(pagination, 'Date From', 'e.dateFrom') }}</th>
         <th title="{{ 'Date To' }}">{{ bs_header(pagination, 'Date To', 'e.dateTo') }}</th>
         <th title="{{ 'Expected' }}">{{ bs_header(pagination, 'Expected', 'e.expected') }}</th>
+        <th title="{{ 'Happened' }}">{{ bs_header(pagination, 'Happened', 'e.happened') }}</th>
     </tr>
     </thead>
     <tbody>
         {% for e in pagination %}
             <tr>
+                {{ dump(e) }}
                 <td>
-                    <a href="{{ path("event_edit", {'id': e.id}) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                    <a href="{{ path("event_edit", {'id': e.event.id}) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
                 </td>
-                <td>{{ e.name }}</td>
-                <td>{{ e.description }}</td>
-                <td>{{ e.dateFrom|date('d.m.Y') }}</td>
-                <td>{{ e.dateTo|date('d.m.Y') }}</td>
+                <td>{{ e.event.name }}</td>
+                <td>{{ e.event.description }}</td>
+                <td>{{ e.event.dateFrom|date('d.m.Y') }}</td>
+                <td>{{ e.event.dateTo|date('d.m.Y') }}</td>
                 <td>{{ e.expected }}</td>
+                <td>{{ e.happened }}</td>
             </tr>
         {% endfor %}
     </tbody>
