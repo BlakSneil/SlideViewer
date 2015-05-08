@@ -1,0 +1,27 @@
+<table class="table table-striped table-hover table-bordered knp-table">
+    <thead>
+    <tr>
+        <th class="unclickable"></th>
+        <th><i class="fa fa-sort{% if pagination.isSorted('s.name') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Name', 's.name') }}</th>
+        <th><i class="fa fa-sort{% if pagination.isSorted('s.description') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Description', 's.description') }}</th>
+        <th><i class="fa fa-sort{% if pagination.isSorted('s.date_creation') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Creation Date', 's.date_creation') }}</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for s in pagination %}
+            <tr>
+                <td>
+                    <a href="{{ path("slide_view", {'id': s.id}) }}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
+                    <a href="{{ path("slide_edit", {'id': s.id}) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                </td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.description }}</td>
+                <td>{{ s.dateCreation|date('d.m.Y') }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="knp-paginator text-right">
+    {{ knp_pagination_render(pagination) }}
+</div>

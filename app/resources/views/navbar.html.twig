@@ -1,0 +1,83 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">{{ app_name }}{{ subapp_name is defined ? ' - ' ~ subapp_name : '' }}</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            {% if app.user %}
+                <ul class="nav navbar-nav">
+
+                    {% if app.request.get('_route') matches '/admin/' %}
+
+                        <li{{ app.request.get('_route') matches '/home/' ? ' class="active"' : '' }}><a href="{{path('admin_home') }}"><i class="fa fa-home"></i> Admin Home</a></li>
+
+                        <li{{ app.request.get('_route') matches '/user*/' ? ' class="active"' : '' }}><a href="{{ path('admin_user_list') }}"><i class="fa fa-users"></i> Users</a></li>
+
+                        <li{{ app.request.get('_route') matches '/role*/' ? ' class="active"' : '' }}><a href="{{ path('admin_role_list') }}"><i class="fa fa-briefcase"></i> Roles</a></li>
+
+                        <li{{ app.request.get('_route') matches '/cell*/' ? ' class="active"' : '' }}><a href="{{ path('admin_cell_list') }}"><i class="fa fa-leaf"></i> Cells</a></li>
+
+                        <li><a href="{{ path('home') }}"><i class="fa fa-globe"></i> View Site</a></li>
+
+                    {% else %}
+
+                        <li{{ app.request.get('_route') matches '/home/' ? ' class="active"' : '' }}><a href="{{ path('home') }}"><i class="fa fa-home"></i> Home</a></li>
+
+                        <li{{ app.request.get('_route') matches '/slide/' ? ' class="active"' : '' }}><a href="{{ path('slide_list') }}"><i class="fa fa-camera"></i> Slides</a></li>
+
+                        <li{{ app.request.get('_route') matches '/member/' ? ' class="active"' : '' }}><a href="{{ path('member_list') }}"><i class="fa fa-users"></i> Members</a></li>
+
+                        <li class="dropdown {{ app.request.get('_route') matches '/cell*/' ? 'active' : '' }}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-leaf"></i> {{ cell is defined ? cell.name : 'Cells' }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                {% render(controller('AppBundle:Cell:navbarList')) %}
+                            </ul>
+                        </li>
+
+                        <li{{ app.request.get('_route') matches '/event*/' ? ' class="active"' : '' }}><a href="{{ path('event_list') }}"><i class="fa fa-calendar"></i> Events</a></li>
+
+                    {% endif %}
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    {% if not (app.request.get('_route') matches '/admin/') %}
+                        <!--
+                        <a type="submit" class="btn btn-success navbar-btn navbar-left"><i class="fa fa-user"></i> New</a>
+                        -->
+
+                        <!--
+                        <form class="navbar-form navbar-left" action="{{ path('member_list') }}" method="GET">
+                            <div class="input-group">
+                                <input name="name" class="form-control has-input-clearer" type="search" placeholder="Find by name..." value="{{ name is defined ? name : '' }}">
+                                <span class="form-control-feedback input-clearer glyphicon glyphicon-remove"></span>
+                                <div class="input-group-btn">
+                                    <button type="submit" id="search-button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </div>
+                        </form>
+                        -->
+                    {% endif %}
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i> {{ app.user.username }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-hand-o-up"></i> Register</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            {% endif %}
+        </div><!--/.nav-collapse -->
+    </div>
+</nav><!-- navbar -->

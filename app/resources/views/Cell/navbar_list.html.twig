@@ -1,0 +1,3 @@
+{% for c in cells %}
+    <li><a href="{{ path('cell_view', {'id': c.id}) }}">{{ c.name }}</a></li>
+{% endfor %}

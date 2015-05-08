@@ -1,0 +1,47 @@
+{% extends 'Event/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/bsuser/css/paginator.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/bsuser/css/input-clearer.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/bsuser/js/list.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/input-clearer.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Cells</h4>
+    </div>
+    <div class="col-md-3 col-md-offset-2 text-right">
+        <form class="bs-pagination-search" action="{{ app.request.uri }}" method="GET">
+            <div class="input-group">
+                <input name="name" class="form-control has-input-clearer" type="search" placeholder="Find by name..." value="{{ name }}">
+                <span class="form-control-feedback input-clearer glyphicon glyphicon-remove"></span>
+                <div class="input-group-btn">
+                    <button type="submit" id="search-button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="col-md-1 text-right">
+            <a href="{{ path('event_create') }}" class="btn btn-success">New</a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="bs-pagination-element" data-list-name="events">
+            {% include 'Event/list_content.html.twig' %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

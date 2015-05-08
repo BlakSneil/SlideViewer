@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="it" datatype="plaintext" original="file.ext">
+		<body>
+
+			<!-- member pagination -->
+			<trans-unit id="members.pagination.title">
+				<source>members.pagination.title</source>
+				<target>Membri</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.color.title">
+				<source>members.pagination.color.title</source>
+				<target>Colore</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.color.label">
+				<source>members.pagination.color.label</source>
+				<target>C</target>
+			</trans-unit>
+
+			<trans-unit id="members.pagination.is_active.title">
+				<source>members.pagination.is_active.title</source>
+				<target>Attivo</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.is_active.label">
+				<source>members.pagination.is_active.label</source>
+				<target>A</target>
+			</trans-unit>
+
+			<trans-unit id="members.pagination.year">
+				<source>members.pagination.year</source>
+				<target>Anno</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.name">
+				<source>members.pagination.name</source>
+				<target>Nome</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.cell">
+				<source>members.pagination.cell</source>
+				<target>Cellula</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.birthday">
+				<source>members.pagination.birthday</source>
+				<target>Data di nascita</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.locality">
+				<source>members.pagination.locality</source>
+				<target>Città</target>
+			</trans-unit>
+			<trans-unit id="members.pagination.cellular">
+				<source>members.pagination.cellular</source>
+				<target>Cellulare</target>
+			</trans-unit>
+
+			<!-- generic actions -->
+			<trans-unit id="action.new">
+				<source>action.new</source>
+				<target>Nuovo</target>
+			</trans-unit>
+			<trans-unit id="action.findbyname">
+				<source>action.findbyname</source>
+				<target>Cerca per nome</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
