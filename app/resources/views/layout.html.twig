@@ -5,6 +5,7 @@
 {% block title %}{{ app_name }} - {{ page_title is defined ? page_title : '' }}{% endblock %}
 
 {% block stylesheets %}
+    <link href="{{ asset('bundles/app/less/style.less') }}" rel="stylesheet/less" type="text/css" />
     <link href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet" />
     <link href="{{ asset('bundles/app/css/footer.css') }}" rel="stylesheet" />
@@ -13,9 +14,10 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('components/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('bundles/bsuser/js/input-clearer.js') }}"></script>
+    <script src="{{ asset('components/less/dist/less.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('components/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/bsuser/js/input-clearer.js') }}" type="text/javascript"></script>
 {% endblock %}
 
 {% block body %}

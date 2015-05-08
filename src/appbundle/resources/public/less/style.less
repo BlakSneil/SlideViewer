@@ -1,0 +1,29 @@
+@import (less) '/Slideviewer/web/components/font-awesome/css/font-awesome.css';
+@import (less) '/Slideviewer/web/components/font-awesome/less/font-awesome.less';
+
+@red: #FF0000;
+@green: #00FF00;
+
+.bs-checked {
+	.fa;
+	.fa-check-square;
+	&:before{
+		content: @fa-var-check-square;
+	}
+}
+
+.bs-not-checked {
+	&:extend(.fa, .fa-square);
+}
+
+.bs-checked-green {
+	&:extend(.bs-checked);
+
+	background-color: @green;
+}
+
+.bs-not-checked-red {
+	&:extend(.bs-not-checked);
+
+	background-color: @red;
+}
