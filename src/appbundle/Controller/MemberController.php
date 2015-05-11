@@ -43,6 +43,20 @@ class MemberController extends BSController
         return $this->render($twigName, array('pagination' => $pagination, 'name' => $name, 'member' => $member));
     }
 
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function updatePartecipationExpected($id = null)
+    {
+        $member = $this->getRepository()->find($id);
+
+        if ($member == null) {
+            $this->get('session')->getFlashBag()->add('error', 'L\'oggetto selezionato non è stato trovato.');
+        }
+
+    }
+
     public function newFormType()
     {
         return new MemberType('AppBundle\Entity\Member');

@@ -137,5 +137,5 @@ class Member extends Person
     public function setIsActive($isActive)
     {
         $this->isActive = $isActive;
-    }   
+    }
 }

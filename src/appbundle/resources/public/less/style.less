@@ -1,29 +1,33 @@
 @import (less) '/Slideviewer/web/components/font-awesome/css/font-awesome.css';
-@import (less) '/Slideviewer/web/components/font-awesome/less/font-awesome.less';
+@import (less) '/Slideviewer/web/components/font-awesome/css/font-awesome.css';
+@import (less) '/Slideviewer/web/components/bootstrap/less/bootstrap.less';
 
-@red: #FF0000;
-@green: #00FF00;
+@bs-blue:	darken(#428bca, 6.5%); // #337ab7
+@bs-green:	#5cb85c;
+@bs-cyan:	#5bc0de;
+@bs-orange:	#f0ad4e;
+@bs-red:	#d9534f;
 
 .bs-checked {
-	.fa;
-	.fa-check-square;
-	&:before{
-		content: @fa-var-check-square;
-	}
+    &:extend(.fa, .fa-check-square all);
 }
 
 .bs-not-checked {
-	&:extend(.fa, .fa-square);
+	&:extend(.fa, .fa-square all);
 }
 
 .bs-checked-green {
 	&:extend(.bs-checked);
 
-	background-color: @green;
+	color: @bs-green;
 }
 
 .bs-not-checked-red {
 	&:extend(.bs-not-checked);
 
-	background-color: @red;
+	color: @bs-red;
+}
+
+.bs-table {
+    &:extend(.table, .table-striped, .table-hover, .table-bordered, .knp-table all);	
 }

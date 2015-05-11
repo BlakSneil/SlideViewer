@@ -56,6 +56,14 @@ member_partecipation_list:
     path:       /member/partecipations/{id}
     defaults:  { _controller: AppBundle:Member:partecipations }
 
+member_partecipation_update_expected:
+    path:       /member/partecipations/update/expected/{id}
+    defaults:  { _controller: AppBundle:Member:updatePartecipationExpected }
+
+member_partecipation_update_happened:
+    path:       /member/partecipations/update/happaned/{id}
+    defaults:  { _controller: AppBundle:Member:updatePartecipationHappaned }
+
 # Cell
 admin_cell_list:
     path:      /admin/cells

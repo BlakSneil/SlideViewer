@@ -1,4 +1,4 @@
-<table class="table table-striped table-hover table-bordered knp-table">
+<table class="bs-table">
     <thead>
     <tr>
         <th title="{{ 'Name' }}">{{ bs_header(pagination, 'Name', 'e.name') }}</th>
@@ -16,8 +16,8 @@
                 <td>{{ e.event.description }}</td>
                 <td>{{ e.event.dateFrom|date('d.m.Y') }}</td>
                 <td>{{ e.event.dateTo|date('d.m.Y') }}</td>
-                <td><a href=""><i class="{{ e.expected ? 'bs-checked-green' : 'bs-not-checked-red'}}"></i></a></td>
-                <td>{{ e.happened }}</td>
+                <td class="text-center"><a href="{{ path('member_partecipation_update_expected', {'id': member.id}) }}"><i class="{{ e.expected ? 'bs-checked-green' : 'bs-not-checked-red'}}"></i></a></td>
+                <td class="text-center"><a href="{{ path('member_partecipation_update_happened', {'id': member.id}) }}"><i class="{{ e.happened ? 'bs-checked-green' : 'bs-not-checked-red'}}"></i></a></td>
             </tr>
         {% endfor %}
     </tbody>
