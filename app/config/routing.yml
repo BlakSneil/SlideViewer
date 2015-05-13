@@ -35,6 +35,10 @@ slide_view:
     path:       /slide/view/{id}
     defaults:  { _controller: AppBundle:Slide:view }
 
+slide_get_tile:
+    path:       /slide/gettile/{id}
+    defaults:  { _controller: AppBundle:Slide:getTile }
+
 # Member
 member_list:
     path:      /members
