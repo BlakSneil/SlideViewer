@@ -62,13 +62,17 @@ class SlideController extends Controller
 
     /**
      * @param id
+     * @param level
+     * @param x
+     * @param y
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getTileAction(Request $request, $id = null)
+    public function getTileAction(Request $request, $id = null, $level = 0, $x = 0, $y = 0)
     {
-        $level = $request->query->get('level', 0);
-        $x = $request->query->get('x', 0);
-        $y = $request->query->get('y', 0);
+        // $level = $request->query->get('level', 0);
+        // $x = $request->query->get('x', 0);
+        // $y = $request->query->get('y', 0);
+        //die($x . $y . $level . $w . $h);
 
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
@@ -80,33 +84,35 @@ class SlideController extends Controller
         }
 
         // estrae la tile
-        $w = 100;
-        $h = 100;
+        $w = 1000;
+        $h = 1000;
 
-        $path = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/avatar.jpg';
+        $path = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/test.svs';
         $slide = openslide_open($path);
 
-//        var_dump($slide);
-        // if ($slide == NULL) {
-        //     echo "File is not supported\n";
-        // } else if (openslide_get_error($slide)) {
-        //     echo "Failed to open slide: " . openslide_get_error($slide). "\n";
-        //     openslide_close($slide);
-        // }
+        if ($slide == NULL) {
+            echo "File is not supported.\n";
+        } else if (openslide_get_error($slide)) {
+            echo "Failed to open slide: " . openslide_get_error($slide). ".\n";
+            openslide_close($slide);
+        } else
 
-        $filePath = $path = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/ciao.png';
-//        write_png($slide, $filePath, $x, $y, $level, $w, $h);
+        $pngDir = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/' . $obj->getId() . "/";
+        $pngFile = $level . "_" . $x . "_" . $y . ".png";
 
-        
-        $image = "avatar.jpg";
-    	//$path = $this->container->get('templating.helper.assets')->getUrl('bundles/app/img/avatar.jpg');
-		$path = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/avatar.jpg';
-    	$file = file_get_contents($path);
+        // TODO: check if file already exists
+
+        write_png($slide, $pngDir . $pngFile, $x, $y, $level, $w, $h);
+
+        openslide_close($slide);
+
+    	$file = file_get_contents($pngDir . $pngFile);
 
     	$headers = array(
         	'Content-Type'     => 'image/png',
-        	'Content-Disposition' => 'inline; filename="' . $image . '"'
+        	'Content-Disposition' => 'inline; filename="' . $pngFile . '"'
         );
+        
 	    return new Response($file, 200, $headers);
     }
 
