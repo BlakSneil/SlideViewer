@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Form\SlideType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use openslide;
 
 class SlideController extends Controller
 {
@@ -41,6 +42,8 @@ class SlideController extends Controller
      */
     public function viewAction(Request $request, $id = null)
     {
+        require_once "openslide.php";
+
         $level = $request->query->get('level', 0);
         $x = $request->query->get('x', 0);
         $y = $request->query->get('y', 0);
@@ -77,7 +80,22 @@ class SlideController extends Controller
         }
 
         // estrae la tile
+        $w = 100;
+        $h = 100;
 
+        $path = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/avatar.jpg';
+        $slide = openslide_open($path);
+
+//        var_dump($slide);
+        // if ($slide == NULL) {
+        //     echo "File is not supported\n";
+        // } else if (openslide_get_error($slide)) {
+        //     echo "Failed to open slide: " . openslide_get_error($slide). "\n";
+        //     openslide_close($slide);
+        // }
+
+        $filePath = $path = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/ciao.png';
+//        write_png($slide, $filePath, $x, $y, $level, $w, $h);
 
         
         $image = "avatar.jpg";
