@@ -37,6 +37,21 @@ class Slide
      */
     private $notes;
 
+    /**
+     * @ORM\Column(name="layer_count", type="integer")
+     */
+    private $numOfLayers;
+
+    /**
+     * @ORM\Column(name="width", type="integer")
+     */
+    private $witdh;
+
+    /**
+     * @ORM\Column(name="height", type="integer")
+     */
+    private $height;
+
 
     /**
      * @return integer
@@ -108,5 +123,37 @@ class Slide
     public function setNotes($notes)
     {
         $this->notes = $notes;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param integer $width
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * @param integer $height
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
     }
 }

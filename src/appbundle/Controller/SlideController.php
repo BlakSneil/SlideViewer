@@ -42,7 +42,10 @@ class SlideController extends Controller
      */
     public function viewAction(Request $request, $id = null)
     {
-        require_once "openslide.php";
+        //require_once "openslide.php";
+
+    	// TODO: aprire openslide_t* openslide_open	(	const char * 	filename	)	e tenerlo aperto per tutta la richiesta
+
 
         $level = $request->query->get('level', 0);
         $x = $request->query->get('x', 0);
@@ -83,37 +86,42 @@ class SlideController extends Controller
             $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
         }
 
-        // estrae la tile
-        $w = 1000;
-        $h = 1000;
-
-        $path = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/test.svs';
-        $slide = openslide_open($path);
-
-        if ($slide == NULL) {
-            echo "File is not supported.\n";
-        } else if (openslide_get_error($slide)) {
-            echo "Failed to open slide: " . openslide_get_error($slide). ".\n";
-            openslide_close($slide);
-        } else
-
         $pngDir = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/' . $obj->getId() . "/";
-        $pngFile = $level . "_" . $x . "_" . $y . ".png";
+        if (!file_exists($pngDir)) {
+        	mkdir($pngDir);
+        }
+        $pngFilename = $level . "_" . $x . "_" . $y . ".png";
+        $pngPath = $pngDir . $pngFilename;
 
-        // TODO: check if file already exists
+        if (!file_exists($pngPath)) {
+	        $slidePath = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/test.svs';
 
-        write_png($slide, $pngDir . $pngFile, $x, $y, $level, $w, $h);
+	        $slide = openslide_open($slidePath);
 
-        openslide_close($slide);
+	        if ($slide == NULL) {
+	            echo "File is not supported.\n";
+	        } else if (openslide_get_error($slide)) {
+	            echo "Failed to open slide: " . openslide_get_error($slide). ".\n";
+	            openslide_close($slide);
+	        } else
 
-    	$file = file_get_contents($pngDir . $pngFile);
+	        $tile_w = 256; // 240??
+	        $tile_h = 256;
+
+	        // TODO: png progressiva?
+	        write_png($slide, $pngPath, $x, $y, $level, $tile_w, $tile_h);
+
+	        openslide_close($slide);
+    	}
+
+    	$pngFile = file_get_contents($pngPath);
 
     	$headers = array(
         	'Content-Type'     => 'image/png',
-        	'Content-Disposition' => 'inline; filename="' . $pngFile . '"'
+        	'Content-Disposition' => 'inline; filename="' . $pngFilename . '"'
         );
         
-	    return new Response($file, 200, $headers);
+	    return new Response($pngFile, 200, $headers);
     }
 
     /**

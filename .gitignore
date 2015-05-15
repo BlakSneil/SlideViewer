@@ -39,3 +39,6 @@
 /composer.lock
 
 .idea/
+
+# Slides
+/app/resources/slides
