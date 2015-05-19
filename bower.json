@@ -8,7 +8,6 @@
         "respond": "*",
         "selectivizr": "master",
         "nwmatcher": "*",
-        "openseadragon": "*",
-        "less" : "master"
+        "openseadragon": "*"
     }
 }

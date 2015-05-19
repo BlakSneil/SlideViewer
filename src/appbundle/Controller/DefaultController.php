@@ -21,11 +21,6 @@ class DefaultController extends Controller
      */
     public function homeAction()
     {
-        /** @var CellRepository $repo */
-        $repo = $this->getDoctrine()->getRepository('AppBundle:Cell');
-
-        $cells = $repo->findAll();
-
-        return $this->render('home.html.twig', array('cells' => $cells));
+        return $this->render('home.html.twig');
     }
 }

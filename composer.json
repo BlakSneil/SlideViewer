@@ -23,8 +23,7 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "ircmaxell/password-compat": "dev-master",
         "knplabs/knp-paginator-bundle": "2.*",
-        "blaksneil/user-bundle": "dev-master",
-        "blaksneil/crud-bundle": "dev-master"
+        "blaksneil/user-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

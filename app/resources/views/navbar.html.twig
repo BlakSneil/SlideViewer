@@ -21,8 +21,6 @@
 
                         <li{{ app.request.get('_route') matches '/role*/' ? ' class="active"' : '' }}><a href="{{ path('admin_role_list') }}"><i class="fa fa-briefcase"></i> Roles</a></li>
 
-                        <li{{ app.request.get('_route') matches '/cell*/' ? ' class="active"' : '' }}><a href="{{ path('admin_cell_list') }}"><i class="fa fa-leaf"></i> Cells</a></li>
-
                         <li><a href="{{ path('home') }}"><i class="fa fa-globe"></i> View Site</a></li>
 
                     {% else %}
@@ -30,17 +28,6 @@
                         <li{{ app.request.get('_route') matches '/home/' ? ' class="active"' : '' }}><a href="{{ path('home') }}"><i class="fa fa-home"></i> Home</a></li>
 
                         <li{{ app.request.get('_route') matches '/slide/' ? ' class="active"' : '' }}><a href="{{ path('slide_list') }}"><i class="fa fa-camera"></i> Slides</a></li>
-
-                        <li{{ app.request.get('_route') matches '/member/' ? ' class="active"' : '' }}><a href="{{ path('member_list') }}"><i class="fa fa-users"></i> Members</a></li>
-
-                        <li class="dropdown {{ app.request.get('_route') matches '/cell*/' ? 'active' : '' }}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-leaf"></i> {{ cell is defined ? cell.name : 'Cells' }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                {% render(controller('AppBundle:Cell:navbarList')) %}
-                            </ul>
-                        </li>
-
-                        <li{{ app.request.get('_route') matches '/event*/' ? ' class="active"' : '' }}><a href="{{ path('event_list') }}"><i class="fa fa-calendar"></i> Events</a></li>
 
                     {% endif %}
 

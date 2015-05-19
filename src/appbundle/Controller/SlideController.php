@@ -139,21 +139,21 @@ class SlideController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        $obj = null != $id ? $this->getRepository()->find($id) : $this->getRepository()->newInstance();
+        $slide = null != $id ? $this->getRepository()->find($id) : $this->getRepository()->newInstance();
 
-        $form = $this->createForm($this->newFormType(), $obj)->handleRequest($request);
+        $form = $this->createForm($this->newFormType(), $slide)->handleRequest($request);
 
         if ($form->isValid()) {
 
-            $manager->persist($obj);
+            $manager->persist($slide);
             $manager->flush();
 
             $this->get('session')->getFlashBag()->add('success', 'Le modifiche sono state salvate con successo.');
 
-            return $this->redirect($this->generateUrl('slide_edit', array('id' => $obj->getId())));
+            return $this->redirect($this->generateUrl('slide_edit', array('id' => $slide->getId())));
         }
 
-        return $this->render('Slide/edit.html.twig', array('form' => $form->createView(), 'obj' => $obj));
+        return $this->render('Slide/edit.html.twig', array('form' => $form->createView(), 'slide' => $slide));
     }
 
     /** @return BSRepositoryInterface */
