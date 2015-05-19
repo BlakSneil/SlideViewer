@@ -4,12 +4,10 @@
 
 {% block content %}
 
-    <h4>Slide: {{ slide.name }}</h4>
+    <h4>Slide: {{ slide.name }}. NB Mostrare il navigator?</h4>
     <br>
     
-    <h3>"{{ url('slide_get_tile', {'id' : slide.id }) }}"</h3>
-    <h3>Mostrare il navigator?</h3>
-    <h3>Trovare un esempio in cui è visibile il tileSize e i livelli su OpenSeadragon e ricavare le info dalla slide utilizzata e confrontare. sul demo di openslide c'è scritto ciò.</h3>
+    <!--<h3>"{{ url('slide_get_tile', {'id' : slide.id }) }}"</h3>-->
 
     <div id="openseadragon-viewer" style="width: 100%; height: 600px;"></div>
 
@@ -50,8 +48,8 @@
 
                     // find the dimension of the tile, adjust for no
                     // overlap data on top and left edges
-                    sx = this.tileSize + (column==0 ? 1 : 2) * this.tileOverlap;
-                    sy = this.tileSize + (row==0 ? 1 : 2) * this.tileOverlap;
+                    var sx = this.tileSize + (column==0 ? 1 : 2) * this.tileOverlap;
+                    var sy = this.tileSize + (row==0 ? 1 : 2) * this.tileOverlap;
 
                     // adjust size for single-tile levels where the image
                     // size is smaller than the regular tile size, and for

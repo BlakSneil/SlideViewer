@@ -69,6 +69,8 @@ class SlideController extends Controller
      * @param $level
      * @param $x
      * @param $y
+     * @param $tile_w
+     * @param $tile_h
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getTileAction($id = null, $level = 0, $x = 0, $y = 0, $tile_w = 240, $tile_h = 240)
@@ -101,7 +103,6 @@ class SlideController extends Controller
         $pngPath = $pngDir . $pngFilename;
 
         if (!file_exists($pngPath)) {
-	        $slidePath = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/test.svs';
             $slidePath = $this->get('kernel')->getRootDir() . '/resources/slides/' . $obj->getId() . ".svs";
 
 	        $slide = openslide_open($slidePath);

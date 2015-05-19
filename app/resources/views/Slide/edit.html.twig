@@ -2,8 +2,11 @@
 
 {% block content %}
 
-    <h4>Slide: {{ slide.name }}</h4>
-
+    {% if (slide.id != null) %}
+        <h4>Slide: {{ slide.name }}</h4>
+    {% else %}
+        <h4>New slide</h4>
+    {% endif %}
     <br>
 
     {{ form_start(form) }}
