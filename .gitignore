@@ -42,3 +42,6 @@
 
 # Slides
 /app/resources/slides
+
+# Tiles
+src/appbundle/resources/public/img/tiles
