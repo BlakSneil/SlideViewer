@@ -37,19 +37,10 @@ class Slide
      */
     private $notes;
 
-    /**
-     * @ORM\Column(name="layer_count", type="integer")
-     */
     private $numOfLayers;
 
-    /**
-     * @ORM\Column(name="width", type="integer")
-     */
     private $witdh;
 
-    /**
-     * @ORM\Column(name="height", type="integer")
-     */
     private $height;
 
 

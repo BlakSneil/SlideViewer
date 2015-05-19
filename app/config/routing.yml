@@ -36,8 +36,8 @@ slide_view:
     defaults:  { _controller: AppBundle:Slide:view }
 
 slide_get_tile:
-    path:       /slide/gettile/{id}/{level}/{x}/{y}
-    defaults:  { _controller: AppBundle:Slide:getTile, level = 0, x = 0, y = 0 }
+    path:       /slide/gettile/{id}/{level}/{x}/{y}/{tile_w}/{tile_h}
+    defaults:  { _controller: AppBundle:Slide:getTile, level = 0, x = 0, y = 0, tile_w = 240, tile_h = 240 }
 
 # Member
 member_list:

@@ -2,11 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Slide;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Form\SlideType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use openslide;
+//use AppBundle\Controller\openslide;
 
 class SlideController extends Controller
 {
@@ -64,13 +65,13 @@ class SlideController extends Controller
     }
 
     /**
-     * @param id
-     * @param level
-     * @param x
-     * @param y
+     * @param $id
+     * @param $level
+     * @param $x
+     * @param $y
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getTileAction(Request $request, $id = null, $level = 0, $x = 0, $y = 0)
+    public function getTileAction($id = null, $level = 0, $x = 0, $y = 0, $tile_w = 240, $tile_h = 240)
     {
         // $level = $request->query->get('level', 0);
         // $x = $request->query->get('x', 0);
@@ -80,13 +81,19 @@ class SlideController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
+        /** @var Slide $obj */
         $obj = $this->getRepository()->find($id);
 
         if ($obj == null) {
             $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
         }
 
-        $pngDir = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/' . $obj->getId() . "/";
+        // $tile_w = 256;
+        // $tile_h = 256;
+        // $tile_w = 240;
+        // $tile_h = 240;
+
+        $pngDir = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/tiles/' . $obj->getId() . "/";
         if (!file_exists($pngDir)) {
         	mkdir($pngDir);
         }
@@ -95,6 +102,7 @@ class SlideController extends Controller
 
         if (!file_exists($pngPath)) {
 	        $slidePath = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/test.svs';
+            $slidePath = $this->get('kernel')->getRootDir() . '/resources/slides/' . $obj->getId() . ".svs";
 
 	        $slide = openslide_open($slidePath);
 
@@ -104,9 +112,6 @@ class SlideController extends Controller
 	            echo "Failed to open slide: " . openslide_get_error($slide). ".\n";
 	            openslide_close($slide);
 	        } else
-
-	        $tile_w = 256; // 240??
-	        $tile_h = 256;
 
 	        // TODO: png progressiva?
 	        write_png($slide, $pngPath, $x, $y, $level, $tile_w, $tile_h);
