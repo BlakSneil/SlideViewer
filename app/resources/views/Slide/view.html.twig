@@ -1,7 +1,5 @@
 {% extends 'Slide/base.html.twig' %}
 
-{% set slide = obj %}
-
 {% block content %}
 
     <h4>Slide: {{ slide.name }}. NB Mostrare il navigator?</h4>
@@ -16,16 +14,30 @@
         var viewer = OpenSeadragon({
             id: "openseadragon-viewer",
             //navigatorSizeRatio: 0.25,
-            wrapHorizontal:     true,
+            //wrapHorizontal:     true,
             prefixUrl: "{{ asset('components/openseadragon/built-openseadragon/openseadragon/images/') }}",
-            //tileSources: "{{  asset('components/openseadragon/built-openseadragon/openseadragon/images/mydz.dzi') }}"
+            //tileSources: "{{  asset('components/openseadragon/built-openseadragon/openseadragon/images/mydz.dzi') }}",
+            //tileSources: "{{ asset('bundles/app/img/tiles/23.dzi') }}",
+
+            tileSources: {
+                height: {{ slide.height }},
+                width:  {{ slide.width }},
+                tileSize: 256,
+                getTileUrl: function( level, column, row ) {
+                    var baseUrl = "{{ url('slide_get_tile', {'id' : slide.id }) }}";
+                    var url = baseUrl + "/" + level + "/" + column + "/" + row;
+                    return url;
+                }
+            }
+/*
             tileSources: {
                 height: 2967, //512*256, // slide.height - hieght of the source image at max resolution in pixels.
                 width:  2220, //512*256, // slide.width
                 tileSize: 240,  // http://openslide.org/formats/aperio/ dice che di solito le tile hanno dim 240 x 240...
-                // minLevel: 8,    // ??? forse perché 2^8=256, ovvero la tile size!! infatti dopo mette (level - 8) quindi per 240 provare con 7
+                // minLevel: 8,
                 // maxLevel: 10,
                 getTileUrl: function( level, column, row ) {
+
                     //return "http://localhost:8080/app_dev.php/slide/gettile/23?level=1&x=1&y=1";
                     //return "http://s3.amazonaws.com/com.modestmaps.bluemarble/" + (level-8) + "-r" + y + "-c" + x + ".jpg";
                     //alert("{{ path('slide_get_tile', {'id' : slide.id, 'level' : 1, 'x' : 1, 'y' : 1}) }}");
@@ -63,7 +75,7 @@
                     var x2 = parseInt((px + sx) / scale);
                     var y2 = parseInt((py + sy) / scale);
 
-                    // tile width/height dimension can't be more than image sides 
+                    // tile width/height dimension can't be more than image sides
                     var tile_width = Math.min(parseInt(sx), (x2-x1));
                     var tile_height = Math.min(parseInt(sy), (y2-y1));
 
@@ -75,9 +87,10 @@
 
                     return baseUrl + "/" + 0 + "/" + x1 + "/" + y1 + "/" + tile_width + "/" + tile_height;
 
-                    return "{{ url('slide_get_tile', {'id' : slide.id }) }}" + "/" + 8 + "/" + (x * this.tileSize) + "/" + (y * this.tileSize);
+                    return "{{ url('slide_get_tile', {'id' : slide.id }) }}" + "/" + (level - 8) + "/" + (x * this.tileSize) + "/" + (y * this.tileSize);
                 }
-    }
+            }
+*/
         });
     </script>
 

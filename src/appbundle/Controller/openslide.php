@@ -1,5 +1,6 @@
 <?php
 
+
 namespace AppBundle\Controller;
 
 /* ----------------------------------------------------------------------------
@@ -231,20 +232,8 @@ abstract class openslide {
 		_openslide_cancel_prefetch_hint_UNIMPLEMENTED();
 	}
 
-	static function SOFTWARE_get() {
-		return SOFTWARE_get();
-	}
-
-	static function OPENSLIDE_get() {
-		return OPENSLIDE_get();
-	}
-
-	static function fail($format) {
-		fail($format);
-	}
-
-	static function write_png($osr,$filePath,$x,$y,$level,$w,$h) {
-		write_png($osr,$filePath,$x,$y,$level,$w,$h);
+	static function write_jpg($osr,$filePath,$x,$y,$level,$w,$h,$tile_w,$tile_h) {
+		return write_jpg($osr,$filePath,$x,$y,$level,$w,$h,$tile_w,$tile_h);
 	}
 }
 

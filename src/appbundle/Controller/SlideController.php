@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Form\SlideType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-//use AppBundle\Controller\openslide;
 
 class SlideController extends Controller
 {
@@ -55,13 +54,13 @@ class SlideController extends Controller
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        $obj = $this->getRepository()->find($id);
+        $slide = $this->getRepository()->find($id);
 
-        if ($obj == null) {
+        if ($slide == null) {
             $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
         }
 
-        return $this->render('Slide/view.html.twig', array('obj' => $obj));
+        return $this->render('Slide/view.html.twig', array('slide' => $slide));
     }
 
     /**
@@ -69,65 +68,57 @@ class SlideController extends Controller
      * @param $level
      * @param $x
      * @param $y
-     * @param $tile_w
-     * @param $tile_h
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getTileAction($id = null, $level = 0, $x = 0, $y = 0, $tile_w = 240, $tile_h = 240)
+    public function getTileAction($id = null, $level = 0, $x = 0, $y = 0)
     {
-        // $level = $request->query->get('level', 0);
-        // $x = $request->query->get('x', 0);
-        // $y = $request->query->get('y', 0);
-        //die($x . $y . $level . $w . $h);
+        require "openslide.php";
+        require "create_deepzoom_tile.php";
+
+        $logger = $this->get('logger');
+        $logger->info("TILETILE: $level $x $y");
 
         /** @var EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        /** @var Slide $obj */
-        $obj = $this->getRepository()->find($id);
+        /** @var Slide $slide */
+        $slide = $this->getRepository()->find($id);
 
-        if ($obj == null) {
+        if ($slide == null) {
             $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
         }
 
-        // $tile_w = 256;
-        // $tile_h = 256;
+        $tileWidth = 256;
+        $tileHeight = 256;
         // $tile_w = 240;
         // $tile_h = 240;
 
-        $pngDir = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/tiles/' . $obj->getId() . "/";
-        if (!file_exists($pngDir)) {
-        	mkdir($pngDir);
+
+        $tileDir = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/tiles/' . $slide->getId() . "_filess";
+        if (!file_exists($tileDir)) {
+            mkdir($tileDir);
         }
-        $pngFilename = $level . "_" . $x . "_" . $y . ".png";
-        $pngPath = $pngDir . $pngFilename;
+        $tileDir = $tileDir . "/" . $level;
+        if (!file_exists($tileDir)) {
+            mkdir($tileDir);
+        }
+        $tileFilename = $x . "_" . $y . ".jpeg";
+        $tilePath = $tileDir . "/" . $tileFilename;
 
-        if (!file_exists($pngPath)) {
-            $slidePath = $this->get('kernel')->getRootDir() . '/resources/slides/' . $obj->getId() . ".svs";
+        if (!file_exists($tilePath)) {
+            $slidePath = $this->get('kernel')->getRootDir() . '/resources/slides/' . $slide->getId() . ".svs";
 
-	        $slide = openslide_open($slidePath);
-
-	        if ($slide == NULL) {
-	            echo "File is not supported.\n";
-	        } else if (openslide_get_error($slide)) {
-	            echo "Failed to open slide: " . openslide_get_error($slide). ".\n";
-	            openslide_close($slide);
-	        } else
-
-	        // TODO: png progressiva?
-	        write_png($slide, $pngPath, $x, $y, $level, $tile_w, $tile_h);
-
-	        openslide_close($slide);
+            createDeepZoomTile($level, $x, $y, $tileWidth, $tileHeight, $slidePath, $tilePath);
     	}
 
-    	$pngFile = file_get_contents($pngPath);
+    	$tileFile = file_get_contents($tilePath);
 
     	$headers = array(
-        	'Content-Type'     => 'image/png',
-        	'Content-Disposition' => 'inline; filename="' . $pngFilename . '"'
+        	'Content-Type'     => 'image/jpeg',
+        	'Content-Disposition' => 'inline; filename="' . $tileFilename . '"'
         );
         
-	    return new Response($pngFile, 200, $headers);
+	    return new Response($tileFile, 200, $headers);
     }
 
     /**

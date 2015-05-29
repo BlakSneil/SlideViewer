@@ -39,10 +39,15 @@ class Slide
 
     private $numOfLayers;
 
-    private $witdh;
-
+    /**
+     * @ORM\Column(name="height", type="integer")
+     */
     private $height;
 
+    /**
+     * @ORM\Column(name="width", type="integer")
+     */
+    private $width;
 
     /**
      * @return integer
@@ -146,5 +151,13 @@ class Slide
     public function setHeight($height)
     {
         $this->height = $height;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getMaxDim()
+    {
+        return max($this->height, $this->width);
     }
 }
