@@ -42,11 +42,6 @@ class SlideController extends Controller
      */
     public function viewAction(Request $request, $id = null)
     {
-        //require_once "openslide.php";
-
-    	// TODO: aprire openslide_t* openslide_open	(	const char * 	filename	)	e tenerlo aperto per tutta la richiesta
-
-
         $level = $request->query->get('level', 0);
         $x = $request->query->get('x', 0);
         $y = $request->query->get('y', 0);
@@ -72,29 +67,25 @@ class SlideController extends Controller
      */
     public function getTileAction($id = null, $level = 0, $x = 0, $y = 0)
     {
-        require "openslide.php";
+//        require "openslide.php";
         require "create_deepzoom_tile.php";
 
+        // /** @var EntityManager $manager */
+        // $manager = $this->get('doctrine')->getManager();
+
+        // /** @var Slide $slide */
+        // $slide = $this->getRepository()->find($id);
+
+        // if ($slide == null) {
+        //     $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
+        // }
+
         $logger = $this->get('logger');
-        $logger->info("TILETILE: $level $x $y");
+        $logger->info('CIAO');
 
-        /** @var EntityManager $manager */
-        $manager = $this->get('doctrine')->getManager();
+        $tileDim = 256;
 
-        /** @var Slide $slide */
-        $slide = $this->getRepository()->find($id);
-
-        if ($slide == null) {
-            $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
-        }
-
-        $tileWidth = 256;
-        $tileHeight = 256;
-        // $tile_w = 240;
-        // $tile_h = 240;
-
-
-        $tileDir = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/tiles/' . $slide->getId() . "_filess";
+        $tileDir = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/tiles/' . $id . "_files";
         if (!file_exists($tileDir)) {
             mkdir($tileDir);
         }
@@ -106,15 +97,15 @@ class SlideController extends Controller
         $tilePath = $tileDir . "/" . $tileFilename;
 
         if (!file_exists($tilePath)) {
-            $slidePath = $this->get('kernel')->getRootDir() . '/resources/slides/' . $slide->getId() . ".svs";
+            $slidePath = $this->get('kernel')->getRootDir() . '/resources/slides/' . $id . ".svs";
 
-            createDeepZoomTile($level, $x, $y, $tileWidth, $tileHeight, $slidePath, $tilePath);
+            createDeepZoomTile($level, $x, $y, $tileDim, $slidePath, $tilePath);
     	}
 
     	$tileFile = file_get_contents($tilePath);
 
     	$headers = array(
-        	'Content-Type'     => 'image/jpeg',
+        	'Content-Type' => 'image/jpeg',
         	'Content-Disposition' => 'inline; filename="' . $tileFilename . '"'
         );
         

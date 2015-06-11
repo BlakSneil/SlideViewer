@@ -1,6 +1,6 @@
 <?php
 
-function createDeepZoomTile($level, $x, $y, $tileWidth, $tileHeight, $slidePath, $tilePath) {
+function createDeepZoomTile($level, $x, $y, $tileDim, $slidePath, $tilePath) {
 
     $osr = openslide_open($slidePath);
 
@@ -35,45 +35,67 @@ function createDeepZoomTile($level, $x, $y, $tileWidth, $tileHeight, $slidePath,
     echo "MAX DEEPZOOM LAYER: $maxDeepZoomLayer\n";
 
 	// 3) calcolo la dimensione massima del livello deepzoom richiesto ($level) dividendo M per 2 finché da N non arrivo a $level
-    $levelMaxDim = $osrLevelDimensions[0]['maxDim'];
-    for ($l = $maxDeepZoomLayer; $l > $level; $l--) { 
-        $levelMaxDim = ceil($levelMaxDim / 2);
-    }
-    echo "LEVEL MAX DIM: $levelMaxDim\n";
+    $exp = $maxDeepZoomLayer - $level;
+    $requiredLevelWidth = ceil($osrLevelDimensions[0]['width'] / pow(2, $exp));
+    $requiredLevelHeight = ceil($osrLevelDimensions[0]['height'] / pow(2, $exp));
+
+    echo "REQUIRED LEVEL WIDTH: $requiredLevelWidth      REQUIRED LEVEL HEIGHT: $requiredLevelHeight\n";
+
 
 	// 4) scelgo il livello di openslide che ha un numero di pixel >= a $levelMaxDim
     // TODO: migliorare, è poco efficiente
     $bestLevel = 0;
     for ($i = 1; $i < $osrLevelCount; $i++) {
-        if ($osrLevelDimensions[$i]['maxDim'] > $levelMaxDim)
+        if ($osrLevelDimensions[$i]['maxDim'] > max($requiredLevelWidth, $requiredLevelHeight))
             $bestLevel = $i;
     }
     echo "BEST LEVEL: $bestLevel\n";
 
-	// 5) prendo la regione della slide al livello $bestLevel in base alle coordinate x e y, secondo la proporzione   tileDim : $levelMaxDim = ? : $osrLevelDimensions[$bestLevel]['maxDim']
+    // 5) calcolo e aggiusto le dimensioni della tile, aggiungendo un pixel di sovrapposizione per le tile non di confine e stando attendo a non sforare le dimensioni del livello
+    $tileWidth = $tileDim;
+    $tileX = $x * $tileWidth;
+    if ($x > 0) {
+        $tileX -= 1;
+        $tileWidth += 1;
+    }
+    if ($tileX + $tileWidth > $requiredLevelWidth) {
+        $tileWidth = $requiredLevelWidth - $tileX;
+    } else if ($tileX + $tileWidth < $requiredLevelWidth) {
+        $tileWidth += 1;
+    }
+
+    $tileHeight = $tileDim;
+    $tileY = $y * $tileHeight;
+    if ($y > 0) {
+        $tileY -= 1;
+        $tileHeight += 1;
+    }
+    if ($tileY + $tileHeight > $requiredLevelHeight) {
+        $tileHeight = $requiredLevelHeight - $tileY;
+    } else if ($tileY + $tileHeight < $requiredLevelHeight) {
+        $tileHeight += 1;
+    }
+
+    echo "TILE_WIDTH: $tileWidth   TILE_HEIGHT: $tileHeight\n";
+
+    // 6) converto tutte le misure nello spazio della slide usando le dovute proporzioni
     // NB: write_png wants x and y coordinates in slide's level 0 reference frame and region width and height in operating level reference frame
-    $region_w = ceil($tileWidth * $osrLevelDimensions[$bestLevel]['maxDim'] / $levelMaxDim);
-    $region_h = $region_w;
-    $region_x = $x * $region_w;
-    $region_y = $y * $region_h;
 
-    if ($region_x + $region_w > $osrLevelDimensions[$bestLevel]['width']) {
-        $region_w = $osrLevelDimensions[$bestLevel]['width'] - $region_x;
-    }
-    if ($region_y + $region_h > $osrLevelDimensions[$bestLevel]['height']) {
-        $region_h = $osrLevelDimensions[$bestLevel]['height'] - $region_y;
-    }
+    // $tileWidth : $requiredLevelWidth = $regionWidth : $osrLevelDimensions[$bestLevel]['width']
+    $regionWidth = round($tileWidth * $osrLevelDimensions[$bestLevel]['width'] / $requiredLevelWidth);
+    $regionHeight = round($tileHeight * $osrLevelDimensions[$bestLevel]['height'] / $requiredLevelHeight);
 
-    $r_w = ceil($tileWidth * $osrLevelDimensions[0]['maxDim'] / $levelMaxDim);
-    $r_h = $r_w;
-    $region_x = $x * $r_w;
-    $region_y = $y * $r_h;
+    // $tileX : $requiredLevelWidth = $regionX : $osrLevelDimensions[$bestLevel]['width']
+    $regionX = round($tileX * $osrLevelDimensions[0]['width'] / $requiredLevelWidth);
+    $regionY = round($tileY * $osrLevelDimensions[0]['height'] / $requiredLevelHeight);
 
-    echo "GETTING REGION: x=$region_x   y=$region_y   w=$region_w   h=$region_h\n";
 
+    echo "GETTING REGION: x=$regionX   y=$regionY   w=$regionWidth   h=$regionHeight\n";
+
+
+    // 7) ritaglio la regione
     // TODO: png progressiva?
-
-    write_jpg($osr, $tilePath, $region_x, $region_y, $bestLevel, $region_w, $region_h, $tileWidth, $tileHeight);
+    write_jpg($osr, $tilePath, $regionX, $regionY, $bestLevel, $regionWidth, $regionHeight, $tileWidth, $tileHeight);
 
     openslide_close($osr);
 }

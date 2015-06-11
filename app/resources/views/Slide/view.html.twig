@@ -2,21 +2,18 @@
 
 {% block content %}
 
-    <h4>Slide: {{ slide.name }}. NB Mostrare il navigator?</h4>
+    <h4>Slide: {{ slide.name }}.</h4>
     <br>
     
-    <!--<h3>"{{ url('slide_get_tile', {'id' : slide.id }) }}"</h3>-->
-
     <div id="openseadragon-viewer" style="width: 100%; height: 600px;"></div>
 
     <script src="{{ asset('components/openseadragon/built-openseadragon/openseadragon/openseadragon.min.js') }}"></script>
     <script type="text/javascript">
         var viewer = OpenSeadragon({
             id: "openseadragon-viewer",
-            //navigatorSizeRatio: 0.25,
-            //wrapHorizontal:     true,
+            showNavigator:  true,
+            navigatorSizeRatio: 0.25,
             prefixUrl: "{{ asset('components/openseadragon/built-openseadragon/openseadragon/images/') }}",
-            //tileSources: "{{  asset('components/openseadragon/built-openseadragon/openseadragon/images/mydz.dzi') }}",
             //tileSources: "{{ asset('bundles/app/img/tiles/23.dzi') }}",
 
             tileSources: {
@@ -29,68 +26,6 @@
                     return url;
                 }
             }
-/*
-            tileSources: {
-                height: 2967, //512*256, // slide.height - hieght of the source image at max resolution in pixels.
-                width:  2220, //512*256, // slide.width
-                tileSize: 240,  // http://openslide.org/formats/aperio/ dice che di solito le tile hanno dim 240 x 240...
-                // minLevel: 8,
-                // maxLevel: 10,
-                getTileUrl: function( level, column, row ) {
-
-                    //return "http://localhost:8080/app_dev.php/slide/gettile/23?level=1&x=1&y=1";
-                    //return "http://s3.amazonaws.com/com.modestmaps.bluemarble/" + (level-8) + "-r" + y + "-c" + x + ".jpg";
-                    //alert("{{ path('slide_get_tile', {'id' : slide.id, 'level' : 1, 'x' : 1, 'y' : 1}) }}");
-                    //return "{{ url('slide_get_tile', {'id' : slide.id, 'level' : 1, 'x' : 1, 'y' : 1}) }}";
-                    //alert("{{ url('slide_get_tile', {'id' : slide.id }) }}" + "/" + level + "/" + x + "/" + y);
-
-                    var x = column;
-                    var y = row;
-
-                    var px = 0;
-                    if (column!=0) {
-                        px = this.tileSize * column - this.tileOverlap;
-                    }
-                    var py = 0;
-                    if (row!=0) {
-                        py = this.tileSize * row - this.tileOverlap;
-                    }
-                    var scale = this.getLevelScale(level);
-                    var dimensionsScaled = this.dimensions.times(scale);
-
-                    // find the dimension of the tile, adjust for no
-                    // overlap data on top and left edges
-                    var sx = this.tileSize + (column==0 ? 1 : 2) * this.tileOverlap;
-                    var sy = this.tileSize + (row==0 ? 1 : 2) * this.tileOverlap;
-
-                    // adjust size for single-tile levels where the image
-                    // size is smaller than the regular tile size, and for
-                    // tiles on the bottom and right edges that would
-                    // exceed the image bounds.
-                    sx = Math.min(sx, dimensionsScaled.x - px);
-                    sy = Math.min(sy, dimensionsScaled.y - py);
-
-                    var x1 = parseInt(px / scale);
-                    var y1 = parseInt(py / scale);
-                    var x2 = parseInt((px + sx) / scale);
-                    var y2 = parseInt((py + sy) / scale);
-
-                    // tile width/height dimension can't be more than image sides
-                    var tile_width = Math.min(parseInt(sx), (x2-x1));
-                    var tile_height = Math.min(parseInt(sy), (y2-y1));
-
-//                    alert(x1 + " " + y1 + " " + x2 + " " + y2 + " " + tile_width + " " + tile_height);
-
-                    var baseUrl = "{{ url('slide_get_tile', {'id' : slide.id }) }}";
-
-//                    return baseUrl + '/image_'+tile_width+'x'+tile_height+'_from_'+x1+','+y1+'_to_'+x2+','+y2+'.jpg';
-
-                    return baseUrl + "/" + 0 + "/" + x1 + "/" + y1 + "/" + tile_width + "/" + tile_height;
-
-                    return "{{ url('slide_get_tile', {'id' : slide.id }) }}" + "/" + (level - 8) + "/" + (x * this.tileSize) + "/" + (y * this.tileSize);
-                }
-            }
-*/
         });
     </script>
 
