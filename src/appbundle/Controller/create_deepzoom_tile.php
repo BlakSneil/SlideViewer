@@ -28,18 +28,18 @@ function createDeepZoomTile($level, $x, $y, $tileDim, $slidePath, $tilePath) {
 
         echo "LEVEL $i DIMENSION: " . int64_t_p_value($ww) . " " . int64_t_p_value($hh) . "\n";
     }
-    echo "MAX DIMENSION: " . $osrLevelDimensions[0]['maxDim'] . "\n";
+    //echo "MAX DIMENSION: " . $osrLevelDimensions[0]['maxDim'] . "\n";
 
 	// 2) calcolo il massimo livello N di deepzoom con la formula 2^(N)>=M, dove M dimensione massima della slide
     $maxDeepZoomLayer = ceil(log($osrLevelDimensions[0]['maxDim'], 2));
-    echo "MAX DEEPZOOM LAYER: $maxDeepZoomLayer\n";
+    //echo "MAX DEEPZOOM LAYER: $maxDeepZoomLayer\n";
 
 	// 3) calcolo la dimensione massima del livello deepzoom richiesto ($level) dividendo M per 2 finché da N non arrivo a $level
     $exp = $maxDeepZoomLayer - $level;
     $requiredLevelWidth = ceil($osrLevelDimensions[0]['width'] / pow(2, $exp));
     $requiredLevelHeight = ceil($osrLevelDimensions[0]['height'] / pow(2, $exp));
 
-    echo "REQUIRED LEVEL WIDTH: $requiredLevelWidth      REQUIRED LEVEL HEIGHT: $requiredLevelHeight\n";
+    //echo "REQUIRED LEVEL WIDTH: $requiredLevelWidth      REQUIRED LEVEL HEIGHT: $requiredLevelHeight\n";
 
 
 	// 4) scelgo il livello di openslide che ha un numero di pixel >= a $levelMaxDim
@@ -49,7 +49,7 @@ function createDeepZoomTile($level, $x, $y, $tileDim, $slidePath, $tilePath) {
         if ($osrLevelDimensions[$i]['maxDim'] > max($requiredLevelWidth, $requiredLevelHeight))
             $bestLevel = $i;
     }
-    echo "BEST LEVEL: $bestLevel\n";
+    //echo "BEST LEVEL: $bestLevel\n";
 
     // 5) calcolo e aggiusto le dimensioni della tile, aggiungendo un pixel di sovrapposizione per le tile non di confine e stando attendo a non sforare le dimensioni del livello
     $tileWidth = $tileDim;
@@ -76,7 +76,7 @@ function createDeepZoomTile($level, $x, $y, $tileDim, $slidePath, $tilePath) {
         $tileHeight += 1;
     }
 
-    echo "TILE_WIDTH: $tileWidth   TILE_HEIGHT: $tileHeight\n";
+    //echo "TILE_WIDTH: $tileWidth   TILE_HEIGHT: $tileHeight\n";
 
     // 6) converto tutte le misure nello spazio della slide usando le dovute proporzioni
     // NB: write_png wants x and y coordinates in slide's level 0 reference frame and region width and height in operating level reference frame
@@ -90,7 +90,7 @@ function createDeepZoomTile($level, $x, $y, $tileDim, $slidePath, $tilePath) {
     $regionY = round($tileY * $osrLevelDimensions[0]['height'] / $requiredLevelHeight);
 
 
-    echo "GETTING REGION: x=$regionX   y=$regionY   w=$regionWidth   h=$regionHeight\n";
+    //echo "GETTING REGION: x=$regionX   y=$regionY   w=$regionWidth   h=$regionHeight\n";
 
 
     // 7) ritaglio la regione

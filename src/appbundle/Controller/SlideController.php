@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Slide;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Form\SlideType;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,19 +35,11 @@ class SlideController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param id
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function viewAction(Request $request, $id = null)
+    public function viewAction($id = null)
     {
-        $level = $request->query->get('level', 0);
-        $x = $request->query->get('x', 0);
-        $y = $request->query->get('y', 0);
-
-        /** @var EntityManager $manager */
-        $manager = $this->get('doctrine')->getManager();
-
         $slide = $this->getRepository()->find($id);
 
         if ($slide == null) {
@@ -70,20 +61,15 @@ class SlideController extends Controller
 //        require "openslide.php";
         require "create_deepzoom_tile.php";
 
-        // /** @var EntityManager $manager */
-        // $manager = $this->get('doctrine')->getManager();
+        /** @var \AppBundle\Entity\Slide $slide */
+        $slide = $this->getRepository()->find($id);
 
-        // /** @var Slide $slide */
-        // $slide = $this->getRepository()->find($id);
+        if ($slide == null) {
+            $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
+        }
 
-        // if ($slide == null) {
-        //     $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
-        // }
-
-        $logger = $this->get('logger');
-        $logger->info('CIAO');
-
-        $tileDim = 256;
+//        $logger = $this->get('logger');
+//        $logger->info('CIAO' . $slide->getVendor()->getFileExtension());
 
         $tileDir = $this->get('kernel')->getRootDir() . '/../web/bundles/app/img/tiles/' . $id . "_files";
         if (!file_exists($tileDir)) {
@@ -97,9 +83,9 @@ class SlideController extends Controller
         $tilePath = $tileDir . "/" . $tileFilename;
 
         if (!file_exists($tilePath)) {
-            $slidePath = $this->get('kernel')->getRootDir() . '/resources/slides/' . $id . ".svs";
+            $slidePath = $this->get('kernel')->getRootDir() . '/resources/slides/' . $id . "." . $slide->getVendor()->getFileExtension();
 
-            createDeepZoomTile($level, $x, $y, $tileDim, $slidePath, $tilePath);
+            createDeepZoomTile($level, $x, $y, $slide->getTileDim(), $slidePath, $tilePath);
     	}
 
     	$tileFile = file_get_contents($tilePath);
@@ -119,9 +105,10 @@ class SlideController extends Controller
      */
     public function persistAction(Request $request, $id = null)
     {
-        /** @var EntityManager $manager */
+        /** @var \Doctrine\ORM\EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
+        /** @var \AppBundle\Entity\Slide $slide */
         $slide = null != $id ? $this->getRepository()->find($id) : $this->getRepository()->newInstance();
 
         $form = $this->createForm($this->newFormType(), $slide)->handleRequest($request);
@@ -139,7 +126,7 @@ class SlideController extends Controller
         return $this->render('Slide/edit.html.twig', array('form' => $form->createView(), 'slide' => $slide));
     }
 
-    /** @return BSRepositoryInterface */
+    /** @return \AppBundle\Entity\Repository\SlideRepository */
     public function getRepository()
     {
         return $this->getDoctrine()->getRepository('AppBundle:Slide');

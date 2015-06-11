@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,11 +34,15 @@ class Slide
     private $date_creation;
 
     /**
-     * @ORM\Column(name="notes", type="string")
+     * @ORM\ManyToOne(targetEntity="Vendor")
+     * @ORM\JoinColumn(name="vendor_id", referencedColumnName="id")
      */
-    private $notes;
+    private $vendor;
 
-    private $numOfLayers;
+    /**
+     * @ORM\Column(name="width", type="integer")
+     */
+    private $width;
 
     /**
      * @ORM\Column(name="height", type="integer")
@@ -45,9 +50,15 @@ class Slide
     private $height;
 
     /**
-     * @ORM\Column(name="width", type="integer")
+     * @ORM\Column(name="tile_dim", type="integer")
      */
-    private $width;
+    private $tileDim;
+
+    /**
+     * @ORM\Column(name="notes", type="string")
+     */
+    private $notes;
+
 
     /**
      * @return integer
@@ -90,7 +101,7 @@ class Slide
     }
 
     /**
-     * @return date
+     * @return datetime
      */
     public function getDateCreation()
     {
@@ -98,11 +109,75 @@ class Slide
     }
 
     /**
-     * @param date $date_creation
+     * @param datetime $date_creation
      */
     public function setDateCreation($date_creation)
     {
         $this->date_creation = $date_creation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVendor()
+    {
+        return $this->vendor;
+    }
+
+    /**
+     * @param string $vendor
+     */
+    public function setVendor($vendor)
+    {
+        $this->vendor = $vendor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * @param mixed $height
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param mixed $width
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTileDim()
+    {
+        return $this->tileDim;
+    }
+
+    /**
+     * @param mixed $tileDim
+     */
+    public function setTileDim($tileDim)
+    {
+        $this->tileDim = $tileDim;
     }
 
     /**
@@ -119,45 +194,5 @@ class Slide
     public function setNotes($notes)
     {
         $this->notes = $notes;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getWidth()
-    {
-        return $this->width;
-    }
-
-    /**
-     * @param integer $width
-     */
-    public function setWidth($width)
-    {
-        $this->width = $width;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getHeight()
-    {
-        return $this->height;
-    }
-
-    /**
-     * @param integer $height
-     */
-    public function setHeight($height)
-    {
-        $this->height = $height;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getMaxDim()
-    {
-        return max($this->height, $this->width);
     }
 }

@@ -30,6 +30,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use AppBundle\Entity\Vendor;
 use AppBundle\Entity\Slide;
 
 class LoadUserData implements FixtureInterface, ContainerAwareInterface
@@ -52,6 +53,70 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
     {
         /** @var EntityManager $manager */
         $manager = $this->container->get('doctrine')->getManager();
+
+
+        /** inserting vendors **/
+        $vendor = new Vendor();
+        $vendor->setName("Aperio");
+        $vendor->setFileExtension("svs");
+        $manager->persist($vendor);
+
+        $vendor->setName("Aperio");
+        $vendor->setFileExtension("tif");
+        $manager->persist($vendor);
+
+        $vendor->setName("Aperio");
+        $vendor->setFileExtension("tiff");
+        $manager->persist($vendor);
+
+        $vendor->setName("Hamamatsu");
+        $vendor->setFileExtension("vms");
+        $manager->persist($vendor);
+
+        $vendor->setName("Hamamatsu");
+        $vendor->setFileExtension("vmu");
+        $manager->persist($vendor);
+
+        $vendor->setName("Hamamatsu");
+        $vendor->setFileExtension("ndpi");
+        $manager->persist($vendor);
+
+        $vendor->setName("Leica");
+        $vendor->setFileExtension("scn");
+        $manager->persist($vendor);
+
+        $vendor->setName("MIRAX");
+        $vendor->setFileExtension("mrxs");
+        $manager->persist($vendor);
+
+        $vendor->setName("Philips");
+        $vendor->setFileExtension("tiff");
+        $manager->persist($vendor);
+
+        $vendor->setName("Sakura");
+        $vendor->setFileExtension("svslide");
+        $manager->persist($vendor);
+
+        $vendor->setName("Trestle");
+        $vendor->setFileExtension("tif");
+        $manager->persist($vendor);
+
+        $vendor->setName("Ventana");
+        $vendor->setFileExtension("bif");
+        $manager->persist($vendor);
+
+        $vendor->setName("Ventana");
+        $vendor->setFileExtension("tif");
+        $manager->persist($vendor);
+
+        $vendor->setName("Generic tiled TIFF");
+        $vendor->setFileExtension("tif");
+        $manager->persist($vendor);
+
+        $vendor->setName("Generic tiled TIFF");
+        $vendor->setFileExtension("tiff");
+        $manager->persist($vendor);
+
 
         for ($i = 0; $i < 20 ; $i++) { 
             /** @var Slide $slide */
