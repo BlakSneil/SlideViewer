@@ -117,7 +117,7 @@ class Slide
     }
 
     /**
-     * @return string
+     * @return \AppBundle\Entity\Vendor
      */
     public function getVendor()
     {
@@ -125,7 +125,7 @@ class Slide
     }
 
     /**
-     * @param string $vendor
+     * @param \AppBundle\Entity\Vendor $vendor
      */
     public function setVendor($vendor)
     {

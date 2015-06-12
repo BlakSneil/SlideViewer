@@ -1,0 +1,20 @@
+{% extends 'Admin/Role/base.html.twig' %}
+
+{% block content %}
+
+    <h4>Role: {{ name }}</h4>
+
+    <br>
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_rest(form) }}
+
+    <br>
+
+    <input type="submit" class="btn btn-success" value="Save" />
+
+    {{ form_end(form) }}
+
+{% endblock content %}

@@ -1,9 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: @BSUserBundle/Resources/config/security.yml }
     - { resource: services.yml }
-    - { resource: @BSUserBundle/Resources/config/config.yml }
 
 framework:
     #esi:             ~
@@ -75,3 +73,14 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FOSUserBundle
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+
+# Knp Paginator
+knp_paginator:
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig

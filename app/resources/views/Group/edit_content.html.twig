@@ -1,0 +1,9 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form with 'FOSUserBundle::form.html.twig' %}
+
+<form action="{{ path('fos_user_group_edit', {'groupName': group_name} ) }}" {{ form_enctype(form) }} method="POST" class="fos_user_group_edit">
+  {{ form_widget(form) }}
+  <div>
+    <input type="submit" class="btn btn-primary" value="{{ 'group.edit.submit'|trans }}" />
+  </div>
+</form>

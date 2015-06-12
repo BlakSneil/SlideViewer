@@ -108,7 +108,6 @@ class SlideController extends Controller
         /** @var \Doctrine\ORM\EntityManager $manager */
         $manager = $this->get('doctrine')->getManager();
 
-        /** @var \AppBundle\Entity\Slide $slide */
         $slide = null != $id ? $this->getRepository()->find($id) : $this->getRepository()->newInstance();
 
         $form = $this->createForm($this->newFormType(), $slide)->handleRequest($request);

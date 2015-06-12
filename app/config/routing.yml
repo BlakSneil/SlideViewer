@@ -2,9 +2,6 @@ app:
     resource: @AppBundle/Controller/
     type:     annotation
 
-bs_user_bundle:
-    resource: "@BSUserBundle/Resources/config/routing.yml"
-
 # Event
 event_list:
     path:      /events
@@ -39,48 +36,5 @@ slide_get_tile:
     path:       /slide/gettile/{id}/{level}/{x}/{y}
     defaults:  { _controller: AppBundle:Slide:getTile, level = 0, x = 0, y = 0 }
 
-# Member
-member_list:
-    path:      /members
-    defaults:  { _controller: AppBundle:Member:list }
-
-member_create:
-    path:      /member/create
-    defaults:  { _controller: AppBundle:Member:persist }
-
-member_edit:
-    path:      /member/edit/{id}
-    defaults:  { _controller: AppBundle:Member:persist }
-
-member_view:
-    path:       /member/view/{id}
-    defaults:  { _controller: AppBundle:Member:view }
-
-member_partecipation_list:
-    path:       /member/partecipations/{id}
-    defaults:  { _controller: AppBundle:Member:partecipations }
-
-member_partecipation_update_expected:
-    path:       /member/partecipations/update/expected/{id}
-    defaults:  { _controller: AppBundle:Member:updatePartecipationExpected }
-
-member_partecipation_update_happened:
-    path:       /member/partecipations/update/happaned/{id}
-    defaults:  { _controller: AppBundle:Member:updatePartecipationHappaned }
-
-# Cell
-admin_cell_list:
-    path:      /admin/cells
-    defaults:  { _controller: AppBundle:Cell:list }
-
-admin_cell_create:
-    path:      /admin/cell/create
-    defaults:  { _controller: AppBundle:Cell:persist }
-
-admin_cell_edit:
-    path:      /admin/cell/edit/{id}
-    defaults:  { _controller: AppBundle:Cell:persist }
-
-cell_view:
-    path:       /cell/view/{id}
-    defaults:  { _controller: AppBundle:Cell:view }
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

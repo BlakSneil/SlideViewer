@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+
+{% set subapp_name = 'Admin' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/app/css/paginator.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/app/css/input-clearer.css') }}" rel="stylesheet" />
+{% endblock %}

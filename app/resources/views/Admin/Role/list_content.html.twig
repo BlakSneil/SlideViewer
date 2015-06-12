@@ -1,0 +1,24 @@
+<table class="table table-striped table-hover table-bordered knp-table">
+    <thead>
+    <tr>
+        <th class="unclickable"></th>
+        <th><i class="fa fa-sort{% if pagination.isSorted('r.name') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Name', 'r.name') }}</th>
+        <th><i class="fa fa-sort{% if pagination.isSorted('r.role') %}{{ pagination.direction == 'desc' ? '-desc' : '-asc' }}{% endif %}"></i> {{ knp_pagination_sortable(pagination, 'Role', 'r.role') }}</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for r in pagination %}
+            <tr>
+                <td>
+                    <a href="{{ path("admin_role_edit", {'id': r.id}) }}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                </td>
+                <td>{{ r.name }}</td>
+                <td>{{ r.role }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="knp-paginator text-right">
+    {{ knp_pagination_render(pagination) }}
+</div>
