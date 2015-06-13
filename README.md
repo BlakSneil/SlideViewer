@@ -1,6 +1,13 @@
 #SlideViewer
-Web viewer for digital slides.
+Web viewer for virtual slides based on Symfony2.
 
 _The implementation is at early stages._
 
-Based on Symfony2. Use `composer update` and `bower update` to install needed bundles and files.
+#Installation
+Use `composer update` and `bower update` to install needed bundles and files.
+
+Put a folder named `slides` under `app/resources` and put inside of it virtual slides you want to view.
+
+This software requires [openslide.so](https://github.com/BlakSneil/Openslide-PHP-Bindings/blob/master/openslide.so) PHP module to be installed into your PHP system.
+
+Use `php app/console doctrine:fixtures:load` to load some test information. This required you add three of [this SVS slide samples](http://openslide.cs.cmu.edu/download/openslide-testdata/Aperio/) to the slides folder.
