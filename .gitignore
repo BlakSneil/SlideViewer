@@ -41,7 +41,7 @@
 .idea/
 
 # Slides
-/app/resources/slides/*
+/app/resources/slides
 
 # Tiles
 src/appbundle/resources/public/img/tiles
