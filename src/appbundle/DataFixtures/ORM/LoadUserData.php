@@ -32,6 +32,9 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use AppBundle\Entity\Vendor;
 use AppBundle\Entity\Slide;
+use FOS\UserBundle\Model\UserManager;
+use AppBundle\Entity\User;
+use AppBundle\Entity\Role;
 
 class LoadUserData implements FixtureInterface, ContainerAwareInterface
 {
@@ -55,12 +58,13 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $manager = $this->container->get('doctrine')->getManager();
 
 
-        /** inserting vendors **/
-        $vendor = new Vendor();
-        $vendor->setName("Aperio");
-        $vendor->setFileExtension("svs");
-        $manager->persist($vendor);
+        /* inserting vendors */
+        $aperio = new Vendor();
+        $aperio->setName("Aperio");
+        $aperio->setFileExtension("svs");
+        $manager->persist($aperio);
 
+        $vendor = new Vendor();
         $vendor->setName("Aperio");
         $vendor->setFileExtension("tif");
         $manager->persist($vendor);
@@ -118,16 +122,80 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $manager->persist($vendor);
 
 
-        for ($i = 0; $i < 20 ; $i++) { 
-            /** @var Slide $slide */
-            $slide = new Slide();
-            $slide->setName('Slide ' . $i);
-            $slide->setDescription('This is the slide n°' . $i);
-            $slide->setDateCreation(new DateTime(date('Y-m-d H:i:s')));
-            $slide->setNotes('Created from data fixtures');
-            $manager->persist($slide);
+        /* Inserting slides */
+        $slide = new Slide();
+        $slide->setName('JP2K-33003-1');
+        $slide->setDescription('JP2K-33003-1');
+        $slide->setDateCreation(new DateTime(date('Y-m-d H:i:s')));
+        $slide->setWidth(15374);
+        $slide->setHeight(17497);
+        $slide->setTileDim(256);
+        $slide->setVendor($aperio);
+        $slide->setNotes('Info collected from http://openslide.org/demo/');
+        $manager->persist($slide);
+
+        $slide = new Slide();
+        $slide->setName('CMU-1');
+        $slide->setDescription('CMU-1');
+        $slide->setDateCreation(new DateTime(date('Y-m-d H:i:s')));
+        $slide->setWidth(46000);
+        $slide->setHeight(32914);
+        $slide->setTileDim(256);
+        $slide->setVendor($aperio);
+        $slide->setNotes('Info collected from http://openslide.org/demo/');
+        $manager->persist($slide);
+
+        $slide = new Slide();
+        $slide->setName('CMU-1-Small-Region');
+        $slide->setDescription('CMU-1-Small-Region');
+        $slide->setDateCreation(new DateTime(date('Y-m-d H:i:s')));
+        $slide->setWidth(2220);
+        $slide->setHeight(2967);
+        $slide->setTileDim(256);
+        $slide->setVendor($aperio);
+        $slide->setNotes('Info collected from http://openslide.org/demo/');
+        $manager->persist($slide);
+
+
+        /* Inserting users */
+
+        /** @var UserManager $fosUserManager */
+        $fosUserManager = $this->container->get('fos_user.user_manager');
+
+        /** @var User $user */
+        $user = $fosUserManager->createUser();
+        $user->setUsername('admin');
+        $user->setPlainPassword('password');
+        $user->setEmail('admin@mail.com');
+        $user->setEnabled(true);
+        $user->addRole('ROLE_ADMIN');
+
+        $fosUserManager->updateUser($user);
+
+        for ($i = 1; $i <= 20; $i++) {
+            $user = $fosUserManager->createUser();
+            $user->setUsername('paolo.rossi.' . $i);
+            $user->setPlainPassword('password');
+            $user->setEmail('paolo.rossi.' . $i . '@mail.com');
+            $user->setEnabled($i % 2);
+
+            $fosUserManager->updateUser($user);
         }
 
+        /* inserting roles */
+
+        /** @var Role $role */
+        $role = new Role();
+        $role->setName('admin');
+        $role->setRole('ROLE_ADMIN');
+        $manager->persist($role);
+
+        $role = new Role();
+        $role->setName('user');
+        $role->setRole('ROLE_USER');
+        $manager->persist($role);
+
+        /* flushing all... */
         $manager->flush();
     }
 }

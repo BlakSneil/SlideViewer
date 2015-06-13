@@ -44,6 +44,7 @@ class SlideController extends Controller
 
         if ($slide == null) {
             $this->get('session')->getFlashBag()->add('error', 'La slide selezionata non è stata trovata.');
+            return $this->redirect($this->generateUrl('slide_list'));
         }
 
         return $this->render('Slide/view.html.twig', array('slide' => $slide));
@@ -84,6 +85,9 @@ class SlideController extends Controller
 
         if (!file_exists($tilePath)) {
             $slidePath = $this->get('kernel')->getRootDir() . '/resources/slides/' . $id . "." . $slide->getVendor()->getFileExtension();
+
+//            $logger = $this->get('logger');
+//            $logger->info('CIAO ' . $slidePath);
 
             createDeepZoomTile($level, $x, $y, $slide->getTileDim(), $slidePath, $tilePath);
     	}

@@ -2,19 +2,6 @@ app:
     resource: @AppBundle/Controller/
     type:     annotation
 
-# Event
-event_list:
-    path:      /events
-    defaults:  { _controller: AppBundle:Event:list }
-
-event_create:
-    path:      /event/create
-    defaults:  { _controller: AppBundle:Event:persist }
-
-event_edit:
-    path:      /event/edit/{id}
-    defaults:  { _controller: AppBundle:Event:persist }
-
 # Slide
 slide_list:
     path:      /slides
