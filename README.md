@@ -1,6 +1,8 @@
 #SlideViewer
 Web viewer for virtual slides based on Symfony2.
 
+This work is designed and developed as Master Thesis in Computer Science under the supervision of prof. V. Della Mea, University of Udine, Italy, inside the Marie Curie AIDPATH Project.
+
 _The implementation is at early stages._
 
 #Installation
